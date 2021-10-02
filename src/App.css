@@ -1,5 +1,8 @@
-ul li {
-  color: red;
-  font-size: 20px;
-  
+.app-wrapper {
+  display: flex;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  margin-right: 100px;
+  margin-left: 100px;
 }
+

@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  margin-top: 30px;
+  height: 700px;
+  background-color: rgb(22, 170, 22);
+}
+.item {
+  margin-top: 15px;
+  margin-left: 10px;
+}
+.nav > div > a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
