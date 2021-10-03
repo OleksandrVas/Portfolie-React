@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import Profile from "./Components/Profile";
-import Header from "./Components/Header";
-import Nav from "./Components/Nav";
+import Profile from "../src/Components/Profile/Profile";
+import Header from "../src/Components/Header/Header"
+import Nav from "../src/Components/NavBar/Nav"
 const App = () => {
   return (
     <div className="app-wrapper">

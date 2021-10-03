@@ -1,8 +1,8 @@
 .content {
-  display: flex;
+ 
   flex-wrap: wrap;
   width: 85%;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .content > img {
   width: 100%;
@@ -25,17 +25,4 @@
 .contentLogoAbout div:nth-child(2) {
   margin-top: 25px;
 }
-/* post */
-.contentNamePost {
-  display: flex;
-  width: 100%;
-  margin-left: 100px;
-  margin-bottom: 25px;
-}
-.contentPostCreating > input {
-  width: 500px;
-  height: 50px;
-}
-.contentPostCreating {
-  margin-left: 100px;
-}
+

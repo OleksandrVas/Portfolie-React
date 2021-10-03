@@ -1,0 +1,18 @@
+/* post */
+.post {
+    margin-bottom: 15px;
+}
+.post > img  {
+height: 50px;
+border-radius: 30px;
+} 
+.post > div {
+    margin-top: 10px;
+}
+.post > div > span {
+    margin-left: 15px;
+}
+.likeImg {
+    height: 30px;
+    border-radius: 10px;
+}
