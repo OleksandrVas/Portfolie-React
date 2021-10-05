@@ -5,13 +5,14 @@
   margin-top: 10px;
   height: 2000px;;
   background-color: rgb(22, 170, 22);
+  padding-top: 30px;
 }
 .item {
-  margin-top: 15px;
-  margin-left: 10px;
+  margin-top: 25px;
+  margin-left: 20px;
 }
 .nav > div > a {
   text-decoration: none;
   color: white;
-  font-size: 16px;
+  font-size: 19px;
 }

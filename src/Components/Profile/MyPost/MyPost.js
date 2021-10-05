@@ -11,8 +11,8 @@ const MyPosts = () => {
           <input placeholder="What do you think about me ?" />
         </div>
         <div className={classes.posts}>
-          <Post massage="How are you " likeCount="21"/>
-          <Post massage="it's my first post " likeCount="13"/>
+          <Post massage="How are you " likesCount="21"/>
+          <Post massage="it's my first post " likesCount="13"/>
           {/* <Post />
           <Post /> */}
         </div>
