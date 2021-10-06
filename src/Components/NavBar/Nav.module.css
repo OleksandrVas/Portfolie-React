@@ -11,8 +11,12 @@
   margin-top: 25px;
   margin-left: 20px;
 }
-.nav > div > a {
+.item a {
   text-decoration: none;
   color: white;
   font-size: 19px;
 }
+.item a.active {
+  color: orange;
+}
+
