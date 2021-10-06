@@ -1,2 +1,4 @@
-
-
+.mainDialogsPage {
+    display: flex;
+    padding-left: 25px;
+}
