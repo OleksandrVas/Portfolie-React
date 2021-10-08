@@ -1,16 +1,15 @@
 import React from "react";
 import classes from "./DialogsMassages.module.css";
-import {Route} from "react-router-dom";
-import Massage from "./Massage";
+import Message from "./Message";
 
 
-const DialogMassages = () => {
+const DialogMassages = (props) => {
     return (
         <>
             <div className={classes.massages}>
-                <Route path="/dialogs/Sasha" component={Massage}/>
-                <Route path="/dialogs/Vlad" component={Massage }/>
-
+                <Message message="demon hello"/>
+                <Message message="Vlad kak ti"/>
+                <Message message="Sasha i miss you too"/>
             </div>
         </>
     )

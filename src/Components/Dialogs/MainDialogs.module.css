@@ -8,22 +8,9 @@
     border-right: 2px solid black;
 }
 
-.dialog {
-    margin-top: 15px;
-}
-
 .dialogsItems {
     padding-top: 25px;
     padding-left: 15px;
 }
 
-.dialog > a {
-    font-size: 22px;
-    text-decoration: none;
-    color: black;
-}
-
-.dialog a.active {
-    color: blue;
-}
 

@@ -1,0 +1,18 @@
+.dialog {
+    margin-top: 15px;
+}
+
+
+.dialog > a {
+    font-size: 22px;
+    text-decoration: none;
+    color: black;
+    border: 2px solid blue ;
+    padding: 4px 10px;
+    border-radius: 9px;
+}
+
+.dialog a.active {
+    color: orange;
+    background-color: #de5c5c;
+}

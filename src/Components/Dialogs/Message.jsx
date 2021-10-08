@@ -1,16 +1,15 @@
 import React from "react";
 import classes from "./DialogsMassages.module.css";
-import {Route} from "react-router-dom";
 
-const Massage = (props) => {
+const Message = (props) => {
     return (
         <>
             <div className={classes.massage}>
-                
+                <div >{props.message}</div>
             </div>
         </>
 
 
     )
 }
-export default Massage
+export default Message

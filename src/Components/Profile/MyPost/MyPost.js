@@ -1,24 +1,21 @@
 import React from "react";
 import classes from "../MyPost/MyPost.module.css";
-import Post from "./post/Post";
+import ProfilePost from "../Posts";
+
 
 const MyPosts = () => {
-  return (
-    <>
-      <div className={classes.content}>
-        <div className={classes.contentNamePost}>My Posts</div>
-        <div className={classes.contentPostCreating}>
-          <input placeholder="What do you think about me ?" />
-        </div>
-        <div className={classes.posts}>
-          <Post massage="How are you " likesCount="21"/>
-          <Post massage="it's my first post " likesCount="13"/>
-          {/* <Post />
-          <Post /> */}
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className={classes.content}>
+                <div className={classes.contentNamePost}>My Posts</div>
+                <button className={classes.buttonAdd}>Add new post </button>
+                <div className={classes.contentPostCreating}>
+                    <input placeholder="What do you think about me ?"/>
+                </div>
+                <ProfilePost/>
+            </div>
+        </>
+    );
 };
 
 export default MyPosts;
