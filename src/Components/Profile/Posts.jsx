@@ -4,15 +4,18 @@ import Post from "./MyPost/post/Post";
 
 const ProfilePost = () => {
     let postData = [
-        {massage:"How are you " , id:0 , likesCount:22 },
-        {massage: "it's my first post ", id:2 , likesCount: 200 }
+        {massage: "How are you ", id: 0, likesCount: 22},
+        {massage: "it's my first post ", id: 2, likesCount: 200},
+        {massage: "it's my second post  ", id: 3, likesCount: 183}
     ]
+    let postDataElement =
+        postData
+            .map(post => <Post massage={post.massage} likesCount={post.likesCount} id={post.id}/>)
 
     return (
         <>
-            <div >
-                <Post massage={postData[0].massage }likesCount={postData[0].likesCount} id={postData[0].id}/>
-                <Post massage={postData[1].massage} likesCount={postData[1].likesCount} id={postData[1].id}/>
+            <div>
+                {postDataElement}
             </div>
         </>
     )
