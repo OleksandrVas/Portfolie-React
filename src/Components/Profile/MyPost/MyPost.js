@@ -3,7 +3,8 @@ import classes from "../MyPost/MyPost.module.css";
 import ProfilePost from "../Posts";
 
 
-const MyPosts = () => {
+const MyPosts = ({postData}) => {
+
     return (
         <>
             <div className={classes.content}>
@@ -12,7 +13,7 @@ const MyPosts = () => {
                 <div className={classes.contentPostCreating}>
                     <input placeholder="What do you think about me ?"/>
                 </div>
-                <ProfilePost/>
+                <ProfilePost postData={postData}/>
             </div>
         </>
     );

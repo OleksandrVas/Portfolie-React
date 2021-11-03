@@ -1,14 +1,9 @@
 import React from "react";
 import classes from "./MainDialogs.module.css";
-import DialogItem from "./DialogItem";
+import DialogItem from "./DialogsItem/DialogItem";
 
-const DialogsAll = () => {
-    let dialogsData = [
-        {id: 1, name: "Sasha"},
-        {id: 2, name: "Vlad"},
-        {id: 3, name: "Igor"},
-        {id: 4, name: "Pavel"}
-    ]
+const DialogsAll = ({dialogsData}) => {
+
     let dialogsElements = dialogsData
         .map( dialog => <DialogItem name={dialog.name} id={dialog.id}/> )
 

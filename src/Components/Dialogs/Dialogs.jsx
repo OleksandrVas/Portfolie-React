@@ -1,18 +1,17 @@
 import React from "react";
 import classes from "./Dialogs.module.css";
 import DialogsAll from "./MainDialogs";
-import DialogMassages from "./DialogMassages";
-import {BrowserRouter} from "react-router-dom";
+import DialogMassages from "./Message/DialogMassages";
 
-const Dialogs = (props) => {
+
+const Dialogs = ({dialogsData, massages}) => {
+
     return (
         <>
-            <BrowserRouter>
-                <div className={classes.mainDialogsPage}>
-                    <DialogsAll/>
-                    <DialogMassages/>
-                </div>
-            </BrowserRouter>
+            <div className={classes.mainDialogsPage}>
+                <DialogsAll dialogsData={dialogsData} />
+                <DialogMassages massages={massages}/>
+            </div>
 
         </>
     )

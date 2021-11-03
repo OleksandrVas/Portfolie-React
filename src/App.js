@@ -6,18 +6,20 @@ import Nav from "../src/Components/NavBar/Nav"
 import Dialogs from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 
-const App = () => {
+const App = ({nameOfUser ,dialogsData , massages , postData}) => {
+
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
-                    <Route path="/profile" component={Profile}/>
-                    <Route  path="/dialogs" component={Dialogs}/>
-                    <Route path="/news" component={Profile}/>
-                    <Route  path="/music" component={Dialogs}/>
-                    <Route path="/settings" component={Profile}/>
+                    <Route path="/profile" render={() => <Profile nameOfUser={nameOfUser} postData={postData} />}/>
+                    <Route path="/dialogs" render={() => <Dialogs dialogsData={dialogsData} massages={massages} />}/>
+                    <Route path="/news" render={() => <Profile nameOfUser={nameOfUser} postData={postData} />}/>
+                    <Route path="/music" render={() => <Dialogs dialogsData={dialogsData} massages={massages} /> }/>
+                    <Route path="/settings" render={() => <Profile nameOfUser={nameOfUser} postData={postData} />}/>
                 </div>
 
             </div>
