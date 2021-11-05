@@ -2,11 +2,11 @@ import React from "react";
 import MyPosts from "./MyPost/MyPost";
 import ProfileContentLogo from "./ProfileContentLogo";
 
-const Profile = ({nameOfUser , postData}) => {
+const Profile = ({state}) => {
 
 
     let nameOfUserElement =
-        nameOfUser
+        state.nameOfUser
             .map(user => <ProfileContentLogo id={user.id}
                                              name={user.name}
                                              birthday={user.birthday}
@@ -16,7 +16,7 @@ const Profile = ({nameOfUser , postData}) => {
         <>
             <div>
                 {nameOfUserElement}
-                <MyPosts postData={postData}/>
+                <MyPosts postData={state.postData}/>
             </div>
         </>
     );

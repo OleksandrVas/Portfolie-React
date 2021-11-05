@@ -1,5 +1,6 @@
 .dialog {
     margin-top: 15px;
+    display: flex;
 }
 
 
@@ -10,6 +11,9 @@
     border: 2px solid blue ;
     padding: 4px 10px;
     border-radius: 9px;
+}
+.dialogIcon {
+    max-width: 50px;
 }
 
 .dialog a.active {

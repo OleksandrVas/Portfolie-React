@@ -5,8 +5,7 @@ import DialogItem from "./DialogsItem/DialogItem";
 const DialogsAll = ({dialogsData}) => {
 
     let dialogsElements = dialogsData
-        .map( dialog => <DialogItem name={dialog.name} id={dialog.id}/> )
-
+        .map( dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/> )
 
     return (
         <>
