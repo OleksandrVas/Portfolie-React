@@ -3,13 +3,16 @@ import classes from "../MyPost/MyPost.module.css";
 import ProfilePost from "../Posts";
 
 
-const MyPosts = ({postData}) => {
+
+const MyPosts = ({postData , addPost }) => {
+
 
     let newPostElement = React.createRef()
 
-    let addPost = () => {
+    let addPostMessage = () => {
+
         let text = newPostElement.current.value;
-        alert(text)
+        addPost(text);
 
     }
 
@@ -20,7 +23,7 @@ const MyPosts = ({postData}) => {
                 <div className={classes.contentPostCreating}>
                     <input placeholder="What do you think about me ?" ref={newPostElement}/>
                 </div>
-                <button className={classes.buttonAdd} onClick={addPost}>Add new post</button>
+                <button className={classes.buttonAdd} onClick={addPostMessage}>Add new post</button>
                 <ProfilePost postData={postData}/>
             </div>
         </>

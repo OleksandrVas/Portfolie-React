@@ -10,9 +10,9 @@ let state = {
             }
         ],
         postData: [
-            {massage: "How are you ", id: 1, likesCount: 22},
-            {massage: "it's my first post ", id: 2, likesCount: 200},
-            {massage: "it's my second post  ", id: 3, likesCount: 183},
+            {message: "How are you ", id: 1, likesCount: 22},
+            {message: "it's my first post ", id: 2, likesCount: 200},
+            {message: "it's my second post  ", id: 3, likesCount: 183},
         ],
     },
     dialogPage: {
@@ -65,4 +65,17 @@ let state = {
         ],
     }
 }
+
+export let addPost = (postMessage) => {
+
+    let newPost = {
+        message : postMessage ,
+        id : 4 ,
+        likesCount : 0
+    };
+
+    state.profilePage.postData.push(newPost);
+
+}
+
 export default state

@@ -8,7 +8,7 @@ const ProfilePost = ({postData}) => {
     let postDataElement =
         postData
             .map(post => <Post
-                massage={post.massage}
+                massage={post.message}
                 likesCount={post.likesCount}
                 id={post.id}/>)
 
