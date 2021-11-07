@@ -1,8 +1,9 @@
 import React from "react";
 import MyPosts from "./MyPost/MyPost";
 import ProfileContentLogo from "./ProfileContentLogo";
+import {addPostText} from "../../redux/state";
 
-const Profile = ({state,addPost}) => {
+const Profile = ({state,addPost , newPostText , addPostText}) => {
 
 
     let nameOfUserElement =
@@ -16,7 +17,7 @@ const Profile = ({state,addPost}) => {
         <>
             <div>
                 {nameOfUserElement}
-                <MyPosts postData={state.postData} addPost={addPost}/>
+                <MyPosts postData={state.postData} addPost={addPost} newPostText={newPostText} addPostText={addPostText}/>
             </div>
         </>
     );
