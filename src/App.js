@@ -6,7 +6,7 @@ import Nav from "../src/Components/NavBar/Nav"
 import Dialogs from "./Components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import Friends from "./Components/Friends/Friends";
-import {addPostText} from "./redux/state";
+
 
 const App = ({state, addPost, addPostText }) => {
 
