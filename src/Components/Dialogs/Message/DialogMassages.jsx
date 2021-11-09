@@ -3,13 +3,17 @@ import classes from "./DialogsMassages.module.css";
 import Message from "./Message";
 
 
-const DialogMassages = ({massages}) => {
+const DialogMassages = ({addMessage ,  addMessageText , newMessageText , massages}) => {
 
     let newMessage = React.createRef();
 
-    let addMessage = () => {
+    let onAddMessage = () => {
+        addMessage()
+    }
+
+    let onMessageChange = () => {
         let text = newMessage.current.value;
-        alert(text)
+        addMessageText(text);
     }
 
 
@@ -21,8 +25,8 @@ const DialogMassages = ({massages}) => {
         <>
             <div className={classes.massages}>
                 {massagesElements}
-                <textarea ref={newMessage}></textarea>
-                <div><button onClick={addMessage}>add message</button></div>
+                <textarea ref={newMessage} value={newMessageText} onChange={onMessageChange} />
+                <div><button onClick={onAddMessage} >add message</button></div>
             </div>
         </>
     )

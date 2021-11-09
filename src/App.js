@@ -8,7 +8,7 @@ import {Route} from "react-router-dom";
 import Friends from "./Components/Friends/Friends";
 
 
-const App = ({state, addPost, addPostText }) => {
+const App = ({state, addPost, addPostText , addMessage , addMessageText }) => {
 
     return (
         <div className="app-wrapper">
@@ -18,7 +18,7 @@ const App = ({state, addPost, addPostText }) => {
                 <Route path="/profile" render={() => <Profile state={state.profilePage} addPost={addPost}
                                                               newPostText={state.profilePage.newPostText}
                                                               addPostText={addPostText}/>}/>
-                <Route path="/dialogs" render={() => <Dialogs state={state.dialogPage}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs state={state.dialogPage} addMessage={addMessage} addMessageText={addMessageText} />}/>
                 <Route path="/news" render={() => <Profile state={state.profilePage}/>}/>
                 <Route path="/music" render={() => <Dialogs state={state.dialogPage}/>}/>
                 <Route path="/settings" render={() => <Profile state={state.profilePage}/>}/>

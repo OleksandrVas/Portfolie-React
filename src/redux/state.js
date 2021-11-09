@@ -48,6 +48,7 @@ let state = {
             {id: 2, massage: "Vlad kak ti"},
             {id: 3, massage: "Sasha i miss you too"},
         ],
+        newMessageText: ""
     },
     sideBar: {
         bestFriends: [
@@ -92,6 +93,30 @@ export let addPostText = (newText) => {
 export const subscribe = (observer) => {
     rerenderEntireTree = observer
 }
+
+
+
+export let addMessage = () => {
+    let addMessages = {
+        id:4,
+        massage: state.dialogPage.newMessageText
+    }
+    state.dialogPage.massages.push(addMessages)
+    rerenderEntireTree()
+    addMessageText('')
+
+}
+export let addMessageText = (text) => {
+    state.dialogPage.newMessageText = text;
+    rerenderEntireTree()
+}
+
+
+
+
+
+
+
 
 
 export default state
