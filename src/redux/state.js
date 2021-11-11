@@ -1,3 +1,5 @@
+const ADD_POST = 'ADD-POST';
+const ADD_POST_TEXT = 'ADD-POST-TEXT';
 
 let store = {
     _state: {
@@ -78,23 +80,23 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    // addPost() {
-    //
-    //     let newPost = {
-    //         message: this._state.profilePage.newPostText,
-    //         id: 4,
-    //         likesCount: 0
-    //     };
-    //     this._state.profilePage.postData.push(newPost);
-    //     this._callSubscriber(this._state)
-    //     this.addPostText('')
-    //
-    // },
-    // addPostText(newText) {
-    //
-    //     this._state.profilePage.newPostText = newText;
-    //     this._callSubscriber(this._state)
-    // },
+    addPost() {
+
+        let newPost = {
+            message: this._state.profilePage.newPostText,
+            id: 4,
+            likesCount: 0
+        };
+        this._state.profilePage.postData.push(newPost);
+        this._callSubscriber(this._state)
+        this.addPostText('')
+
+    },
+    addPostText(newText) {
+
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state)
+    },
     addMessage() {
         let addMessages = {
             id: 4,
@@ -110,7 +112,7 @@ let store = {
         this._callSubscriber(this._state)
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 message: this._state.profilePage.newPostText,
                 id: 4,
@@ -119,7 +121,7 @@ let store = {
             this._state.profilePage.postData.push(newPost);
             this._callSubscriber(this._state)
             this.addPostText('')
-        } else if (action.type === 'ADD-POST-TEXT') {
+        } else if (action.type === ADD_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state)
         }else if (action.type === 'ADD-MESSAGE') {
@@ -134,6 +136,14 @@ let store = {
             this._state.dialogPage.newMessageText = action.text;
             this._callSubscriber(this._state)
         }
+    }
+}
+
+export const addPostActionCreator = () => ({type : ADD_POST})
+export const updateNewPostCreator = (text) => {
+    return {
+        type : 'ADD-POST-TEXT',
+        newText : text
     }
 }
 
