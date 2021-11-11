@@ -3,17 +3,17 @@ import classes from "../MyPost/MyPost.module.css";
 import ProfilePost from "../Posts";
 
 
-const MyPosts = ({postData, addPost, newPostText, addPostText}) => {
+const MyPosts = ({dispatch,newPostText, postData}) => {
 
 
     let newPostElement = React.createRef()
 
     let addPostMessage = () => {
-        addPost();
+        dispatch({type:'ADD-POST'});
     }
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        addPostText(text);
+        dispatch({type:'ADD-POST-TEXT' , newText : text } );
 
     }
 

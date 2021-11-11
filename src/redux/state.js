@@ -1,5 +1,6 @@
+
 let store = {
-    _state : {
+    _state: {
         profilePage: {
             nameOfUser: [
                 {
@@ -68,35 +69,35 @@ let store = {
             ],
         }
     },
-    getState() {
-      return this._state;
-    },
     _callSubscriber() {
         console.log("stay changed ")
-    } ,
-    addPost(){
-
-        let newPost = {
-            message: this._state.profilePage.newPostText,
-            id: 4,
-            likesCount: 0
-        };
-        this._state.profilePage.postData.push(newPost);
-        this._callSubscriber(this._state)
-        this.addPostText('')
-
     },
-    addPostText(newText) {
-
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state)
+    getState() {
+        return this._state;
     },
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    addMessage()  {
+    // addPost() {
+    //
+    //     let newPost = {
+    //         message: this._state.profilePage.newPostText,
+    //         id: 4,
+    //         likesCount: 0
+    //     };
+    //     this._state.profilePage.postData.push(newPost);
+    //     this._callSubscriber(this._state)
+    //     this.addPostText('')
+    //
+    // },
+    // addPostText(newText) {
+    //
+    //     this._state.profilePage.newPostText = newText;
+    //     this._callSubscriber(this._state)
+    // },
+    addMessage() {
         let addMessages = {
-            id:4,
+            id: 4,
             massage: this._state.dialogPage.newMessageText
         }
         this._state.dialogPage.massages.push(addMessages)
@@ -104,20 +105,37 @@ let store = {
         this.addMessageText('')
 
     },
-    addMessageText(text){
+    addMessageText(text) {
         this._state.dialogPage.newMessageText = text;
         this._callSubscriber(this._state)
     },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                message: this._state.profilePage.newPostText,
+                id: 4,
+                likesCount: 0
+            };
+            this._state.profilePage.postData.push(newPost);
+            this._callSubscriber(this._state)
+            this.addPostText('')
+        } else if (action.type === 'ADD-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state)
+        }else if (action.type === 'ADD-MESSAGE') {
+            let addMessages = {
+                id: 4,
+                massage: this._state.dialogPage.newMessageText
+            }
+            this._state.dialogPage.massages.push(addMessages)
+            this._callSubscriber(this._state)
+            this.addMessageText('')
+        }else if (action.type === 'ADD-MESSAGE-TEXT') {
+            this._state.dialogPage.newMessageText = action.text;
+            this._callSubscriber(this._state)
+        }
+    }
 }
 
-
-
-
-
-
-
-
-
-
-window.store =store
+window.store = store
 export default store

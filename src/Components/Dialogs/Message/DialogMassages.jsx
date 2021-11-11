@@ -3,17 +3,17 @@ import classes from "./DialogsMassages.module.css";
 import Message from "./Message";
 
 
-const DialogMassages = ({addMessage ,  addMessageText , newMessageText , massages}) => {
+const DialogMassages = ({dispatch, newMessageText , massages}) => {
 
     let newMessage = React.createRef();
 
     let onAddMessage = () => {
-        addMessage()
+        dispatch({type:'ADD-MESSAGE'})
     }
 
     let onMessageChange = () => {
         let text = newMessage.current.value;
-        addMessageText(text);
+        dispatch({type:'ADD-MESSAGE-TEXT' , text:text });
     }
 
 
