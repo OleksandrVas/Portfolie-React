@@ -11,7 +11,7 @@ const Dialogs = ({state , dispatch}) => {
             <div className={classes.mainDialogsPage}>
                 <DialogsAll dialogsData={state.dialogsData} />
                 <DialogMassages massages={state.massages} dispatch={dispatch}
-                                newMessageText={state.dialogsData.newMessageText}
+                                newMessageText={state.newMessageText}
                 />
             </div>
 

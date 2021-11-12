@@ -15,6 +15,7 @@ const DialogMassages = ({dispatch, newMessageText , massages}) => {
     let onMessageChange = () => {
         let text = newMessage.current.value;
         dispatch(addMessageTextCreator(text));
+        console.log(newMessageText)
     }
 
 

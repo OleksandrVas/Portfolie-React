@@ -139,8 +139,8 @@ let store = {
                 massage: this._state.dialogPage.newMessageText
             }
             this._state.dialogPage.massages.push(addMessages)
-            this._callSubscriber(this._state)
             this.addMessageText('')
+            this._callSubscriber(this._state)
         }else if (action.type === 'ADD-MESSAGE-TEXT') {
             this._state.dialogPage.newMessageText = action.text;
             this._callSubscriber(this._state)
