@@ -9,13 +9,11 @@ import {addPostActionCreator, updateNewPostCreator} from "../../../redux/state";
 const MyPosts = ({dispatch,newPostText, postData}) => {
 
 
-    let newPostElement = React.createRef()
-
     let addPostMessage = () => {
         dispatch(addPostActionCreator());
     }
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
+    let onPostChange = (e) => {
+        let text = e.target.value
         dispatch(updateNewPostCreator(text) );
 
     }
@@ -25,7 +23,7 @@ const MyPosts = ({dispatch,newPostText, postData}) => {
             <div className={classes.content}>
                 <div className={classes.contentNamePost}>My Posts</div>
                 <div className={classes.contentPostCreating}>
-                    <textarea onChange={onPostChange} value={newPostText} ref={newPostElement}/>
+                    <textarea onChange={onPostChange} value={newPostText}/>
                 </div>
                 <button className={classes.buttonAdd} onClick={addPostMessage}>Add new post</button>
                 <ProfilePost postData={postData}/>
