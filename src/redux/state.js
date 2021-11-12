@@ -1,5 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const ADD_POST_TEXT = 'ADD-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE_TEXT = 'ADD-MESSAGE-TEXT';
+
 
 let store = {
     _state: {
@@ -111,6 +114,12 @@ let store = {
         this._state.dialogPage.newMessageText = text;
         this._callSubscriber(this._state)
     },
+
+
+
+
+
+
     dispatch(action) {
         if (action.type === ADD_POST) {
             let newPost = {
@@ -142,10 +151,20 @@ let store = {
 export const addPostActionCreator = () => ({type : ADD_POST})
 export const updateNewPostCreator = (text) => {
     return {
-        type : 'ADD-POST-TEXT',
+        type : ADD_POST_TEXT ,
         newText : text
     }
 }
+export const addMessageCreator = () => ({type: ADD_MESSAGE});
+export const addMessageTextCreator = (text) => {
+    return {
+        type: ADD_MESSAGE_TEXT ,
+        text:text
+    }
+};
+
+
+
 
 window.store = store
 export default store

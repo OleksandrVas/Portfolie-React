@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./DialogsMassages.module.css";
 import Message from "./Message";
+import {addMessageCreator, addMessageTextCreator} from "../../../redux/state";
 
 
 const DialogMassages = ({dispatch, newMessageText , massages}) => {
@@ -8,12 +9,12 @@ const DialogMassages = ({dispatch, newMessageText , massages}) => {
     let newMessage = React.createRef();
 
     let onAddMessage = () => {
-        dispatch({type:'ADD-MESSAGE'})
+        dispatch(addMessageCreator())
     }
 
     let onMessageChange = () => {
         let text = newMessage.current.value;
-        dispatch({type:'ADD-MESSAGE-TEXT' , text:text });
+        dispatch(addMessageTextCreator(text));
     }
 
 
