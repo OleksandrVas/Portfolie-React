@@ -6,16 +6,14 @@ import {addMessageCreator, addMessageTextCreator} from "../../../redux/state";
 
 const DialogMassages = ({dispatch, newMessageText , massages}) => {
 
-    let newMessage = React.createRef();
 
     let onAddMessage = () => {
         dispatch(addMessageCreator())
     }
 
-    let onMessageChange = () => {
-        let text = newMessage.current.value;
+    let onMessageChange = (e) => {
+        let text = e.target.value;
         dispatch(addMessageTextCreator(text));
-        console.log(newMessageText)
     }
 
 
@@ -27,7 +25,7 @@ const DialogMassages = ({dispatch, newMessageText , massages}) => {
         <>
             <div className={classes.massages}>
                 {massagesElements}
-                <textarea ref={newMessage} value={newMessageText} onChange={onMessageChange} />
+                <textarea  value={newMessageText} onChange={onMessageChange} />
                 <div><button onClick={onAddMessage} >add message</button></div>
             </div>
         </>
