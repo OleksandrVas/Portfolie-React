@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./DialogsMassages.module.css";
 import Message from "./Message";
-import {addMessageCreator, addMessageTextCreator} from "../../../redux/state";
+import {addMessageCreator, addMessageTextCreator} from "../../../redux/dialogs-reducer";
 
 
 const DialogMassages = ({dispatch, newMessageText , massages}) => {

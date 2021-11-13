@@ -1,7 +1,7 @@
-const ADD_POST = 'ADD-POST';
-const ADD_POST_TEXT = 'ADD-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const ADD_MESSAGE_TEXT = 'ADD-MESSAGE-TEXT';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
+
 
 
 let store = {
@@ -116,52 +116,16 @@ let store = {
     },
 
 
-
-
-
-
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost = {
-                message: this._state.profilePage.newPostText,
-                id: 4,
-                likesCount: 0
-            };
-            this._state.profilePage.postData.push(newPost);
-            this._callSubscriber(this._state)
-            this.addPostText('')
-        } else if (action.type === ADD_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state)
-        }else if (action.type === 'ADD-MESSAGE') {
-            let addMessages = {
-                id: 4,
-                massage: this._state.dialogPage.newMessageText
-            }
-            this._state.dialogPage.massages.push(addMessages)
-            this.addMessageText('')
-            this._callSubscriber(this._state)
-        }else if (action.type === 'ADD-MESSAGE-TEXT') {
-            this._state.dialogPage.newMessageText = action.text;
-            this._callSubscriber(this._state)
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
+
+        this._callSubscriber(this._state)
+
     }
 }
 
-export const addPostActionCreator = () => ({type : ADD_POST})
-export const updateNewPostCreator = (text) => {
-    return {
-        type : ADD_POST_TEXT ,
-        newText : text
-    }
-}
-export const addMessageCreator = () => ({type: ADD_MESSAGE});
-export const addMessageTextCreator = (text) => {
-    return {
-        type: ADD_MESSAGE_TEXT ,
-        text:text
-    }
-};
 
 
 
