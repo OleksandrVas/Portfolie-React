@@ -1,36 +1,35 @@
-const ADD_FRIENDS_MESSAGE  = 'ADD-FRIENDS-MESSAGE';
-const ADD_FRIENDS_MESSAGE_TEXT = 'ADD-FRIENDS-MESSAGE-TEXT'
+const  ADD_FRIEND_MESSAGE = 'ADD-FRIEND-MESSAGE'
+const ADD_FRIEND_MESSAGE_TEXT = 'ADD-FRIEND-MESSAGE-TEXT';
 
-const friendsReducer = (state , action ) => {
+
+const friendsReducer = (state, action ) => {
     switch (action.type) {
-        case ADD_FRIENDS_MESSAGE :
-            let newTextMessage = {
+        case ADD_FRIEND_MESSAGE :
+            let newFriendMessage = {
                 id : 2 ,
-                name : "Ivan" ,
-                text : state.newMessageText,
-            }
-            state.messages.push(newTextMessage)
-            state.newMessageText = ''
+                name : "Vlad" ,
+                text : state.newFriendsMessageText,
+            };
+            state.messages.push(newFriendMessage);
+            state.newFriendsMessageText=''
             return state
 
-        case ADD_FRIENDS_MESSAGE_TEXT :
-            state.newMessageText = action.newFriendText
-            return state
 
+        case   ADD_FRIEND_MESSAGE_TEXT :
+            state.newFriendsMessageText=action.newFriendsMessageText
+            return state
         default :
             return state
-
     }
-    return state;
+    return state
 }
 
-
-export const  addMessageClick = () =>( {type :ADD_FRIENDS_MESSAGE });
-export const onChangeMessageFriendText = (newFriendText) => {
+export const addFriendsMessage = () => ({type:ADD_FRIEND_MESSAGE});
+export const addFriendsMessageText = (text ) => {
     return {
-        type : ADD_FRIENDS_MESSAGE_TEXT ,
-        newFriendText : newFriendText
+        type : ADD_FRIEND_MESSAGE_TEXT ,
+        newFriendsMessageText : text
     }
-
 }
+
 export default friendsReducer

@@ -80,7 +80,7 @@ let store = {
                     text: "Hi"
                 },
             ],
-            newMessageText: ''
+            newFriendsMessageText: ''
         }
     },
     _callSubscriber() {
@@ -123,20 +123,7 @@ let store = {
         this._state.dialogPage.newMessageText = text;
         this._callSubscriber(this._state)
     },
-    addFriendMessage(){
-        let newTextMessage = {
-            id : 2 ,
-            name : "Ivan" ,
-            text : this._state.friendsMessages.newMessageText,
-        }
-        this._state.friendsMessages.messages.push(newTextMessage)
-        this.addFriendMessageText('')
-        this._callSubscriber(this._state)
-    },
-    addFriendMessageText(newFriendText){
-        this._state.friendsMessages.newMessageText= newFriendText;
-        this._callSubscriber(this._state)
-    },
+
 
 
 

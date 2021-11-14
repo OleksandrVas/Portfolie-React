@@ -23,7 +23,8 @@ const App = ({state,dispatch }) => {
                 <Route path="/news" render={() => <Profile state={state.profilePage}/>}/>
                 <Route path="/music" render={() => <Dialogs state={state.dialogPage}/>}/>
                 <Route path="/settings" render={() => <Profile state={state.profilePage}/>}/>
-                <Route path="/friends" render={() => <Friends state={state.friendsMessages} dispatch={dispatch} newMessageText={state.friendsMessages.newMessageText}/>}/>
+                <Route path="/friends" render={() => <Friends state={state.friendsMessages} dispatch={dispatch}
+                                                              newFriendsMessageText={state.friendsMessages.newFriendsMessageText} />}/>
             </div>
         </div>
     );
