@@ -2,9 +2,9 @@ import React from "react";
 import classes from "./MainDialogs.module.css";
 import DialogItem from "./DialogsItem/DialogItem";
 
-const DialogsAll = ({dialogsData}) => {
+const DialogsAll = (props) => {
 
-    let dialogsElements = dialogsData
+    let dialogsElements = props.dialogsData
         .map( dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/> )
 
     return (

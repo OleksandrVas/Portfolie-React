@@ -3,19 +3,19 @@ import FriendsMessages from "./FriendsMessage/FriendsMessages";
 import {addFriendsMessage, addFriendsMessageText} from "../../redux/friends-reducer";
 
 
-const Friends = ({state , dispatch , newFriendsMessageText}) => {
+const Friends = (props) => {
 
     let onButtonClick =() => {
-        dispatch(addFriendsMessage())
+        props.dispatch(addFriendsMessage())
     };
     let onChangeArea = (e) => {
         let text = e.target.value ;
-        dispatch(addFriendsMessageText(text))
+        props.dispatch(addFriendsMessageText(text))
     }
 
 
     let newFriendsMessages =
-        state.messages
+        props.state.messages
             .map(user => <FriendsMessages id={user.id}
                 name={user.name} text={user.text}/>)
 
@@ -24,7 +24,7 @@ const Friends = ({state , dispatch , newFriendsMessageText}) => {
         <>
             <div>
                 {newFriendsMessages}
-                <textarea value={newFriendsMessageText}  onChange={onChangeArea} />
+                <textarea value={props.newFriendsMessageText}  onChange={onChangeArea} />
                 <div>
                     <button onClick={onButtonClick} >add Friend's messages</button>
                 </div>

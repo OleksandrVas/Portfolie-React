@@ -4,9 +4,9 @@ import {NavLink} from "react-router-dom";
 
 import BestFriends from "./BestFriends";
 
-const Nav = ({state}) => {
+const Nav = (props) => {
     let bestFriend  =
-        state.bestFriends
+        props.state.bestFriends
             .map(user => <BestFriends
                 name={user.name}
                 img={user.img}

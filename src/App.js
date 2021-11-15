@@ -8,23 +8,24 @@ import {Route} from "react-router-dom";
 import Friends from "./Components/Friends/Friends";
 
 
-const App = ({state,dispatch }) => {
+const App = (props) => {
 
     return (
         <div className="app-wrapper">
             <Header/>
-            <Nav state={state.sideBar}/>
+            <Nav state={props.state.sideBar}/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile state={state.profilePage}
-                                                              dispatch={dispatch}
-                                                              newPostText={state.profilePage.newPostText}
+                <Route path="/profile" render={() => <Profile state={props.state.profilePage}
+                                                              store={props.store}
+                                                              dispatch={props.dispatch}
+                                                              newPostText={props.state.profilePage.newPostText}
                 />}/>
-                <Route path="/dialogs" render={() => <Dialogs state={state.dialogPage} dispatch={dispatch}/>}/>
-                <Route path="/news" render={() => <Profile state={state.profilePage}/>}/>
-                <Route path="/music" render={() => <Dialogs state={state.dialogPage}/>}/>
-                <Route path="/settings" render={() => <Profile state={state.profilePage}/>}/>
-                <Route path="/friends" render={() => <Friends state={state.friendsMessages} dispatch={dispatch}
-                                                              newFriendsMessageText={state.friendsMessages.newFriendsMessageText} />}/>
+                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogPage} dispatch={props.dispatch}/>}/>
+                <Route path="/news" render={() => <Profile state={props.state.profilePage}/>}/>
+                <Route path="/music" render={() => <Dialogs state={props.state.dialogPage}/>}/>
+                <Route path="/settings" render={() => <Profile state={props.state.profilePage}/>}/>
+                <Route path="/friends" render={() => <Friends state={props.state.friendsMessages} dispatch={props.dispatch}
+                                                              newFriendsMessageText={props.state.friendsMessages.newFriendsMessageText} />}/>
             </div>
         </div>
     );

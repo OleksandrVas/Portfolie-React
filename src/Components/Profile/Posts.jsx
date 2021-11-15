@@ -2,11 +2,10 @@ import React from "react";
 import Post from "./MyPost/post/Post";
 
 
-const ProfilePost = ({postData}) => {
-
+const ProfilePost = (props) => {
 
     let postDataElement =
-        postData
+        props.postData
             .map(post => <Post
                 massage={post.message}
                 likesCount={post.likesCount}

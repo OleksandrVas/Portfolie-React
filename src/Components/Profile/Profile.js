@@ -1,13 +1,12 @@
 import React from "react";
-import MyPosts from "./MyPost/MyPost";
 import ProfileContentLogo from "./ProfileContentLogo";
+import MyPostsContainer from "./MyPost/MyPostContainer";
 
 
-const Profile = ({state,dispatch , newPostText }) => {
-
+const Profile = (props) => {
 
     let nameOfUserElement =
-        state.nameOfUser
+        props.state.nameOfUser
             .map(user => <ProfileContentLogo id={user.id}
                                              name={user.name}
                                              birthday={user.birthday}
@@ -17,7 +16,7 @@ const Profile = ({state,dispatch , newPostText }) => {
         <>
             <div>
                 {nameOfUserElement}
-                <MyPosts postData={state.postData} dispatch={dispatch} newPostText={newPostText} />
+                <MyPostsContainer  store={props.store}  />
             </div>
         </>
     );

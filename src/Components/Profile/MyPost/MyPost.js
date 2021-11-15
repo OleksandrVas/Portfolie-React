@@ -1,20 +1,19 @@
 import React from "react";
 import classes from "../MyPost/MyPost.module.css";
 import ProfilePost from "../Posts";
-import {addPostActionCreator, updateNewPostCreator} from "../../../redux/profile-reducer";
 
 
 
 
-const MyPosts = ({dispatch,newPostText, postData}) => {
+const MyPosts = (props) => {
+    let newPost = React.createRef()
 
-
-    let addPostMessage = () => {
-        dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPostMessage();
     }
     let onPostChange = (e) => {
-        let text = e.target.value
-        dispatch(updateNewPostCreator(text) );
+        let text = newPost.current.value;
+        props.addPostText(text)
 
     }
 
@@ -23,10 +22,10 @@ const MyPosts = ({dispatch,newPostText, postData}) => {
             <div className={classes.content}>
                 <div className={classes.contentNamePost}>My Posts</div>
                 <div className={classes.contentPostCreating}>
-                    <textarea onChange={onPostChange} value={newPostText}/>
+                    <textarea onChange={onPostChange} ref={newPost} value={props.newPostText}/>
                 </div>
-                <button className={classes.buttonAdd} onClick={addPostMessage}>Add new post</button>
-                <ProfilePost postData={postData}/>
+                <button className={classes.buttonAdd} onClick={onAddPost}>Add new post</button>
+                <ProfilePost postData={props.postData}/>
             </div>
         </>
     );

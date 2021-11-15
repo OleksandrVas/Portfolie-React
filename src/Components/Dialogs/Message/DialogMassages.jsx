@@ -4,28 +4,28 @@ import Message from "./Message";
 import {addMessageCreator, addMessageTextCreator} from "../../../redux/dialogs-reducer";
 
 
-const DialogMassages = ({dispatch, newMessageText , massages}) => {
+const DialogMassages = (props) => {
 
 
     let onAddMessage = () => {
-        dispatch(addMessageCreator())
+        props.dispatch(addMessageCreator())
     }
 
     let onMessageChange = (e) => {
         let text = e.target.value;
-        dispatch(addMessageTextCreator(text));
+        props.dispatch(addMessageTextCreator(text));
     }
 
 
     let massagesElements =
-        massages
+        props.massages
             .map( d => <Message message={d.massage} id={d.id}/> )
 
     return (
         <>
             <div className={classes.massages}>
                 {massagesElements}
-                <textarea  value={newMessageText} onChange={onMessageChange} />
+                <textarea  value={props.newMessageText} onChange={onMessageChange} />
                 <div><button onClick={onAddMessage} >add message</button></div>
             </div>
         </>

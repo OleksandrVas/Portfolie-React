@@ -4,14 +4,14 @@ import DialogsAll from "./MainDialogs";
 import DialogMassages from "./Message/DialogMassages";
 
 
-const Dialogs = ({state , dispatch}) => {
+const Dialogs = (props) => {
 
     return (
         <>
             <div className={classes.mainDialogsPage}>
-                <DialogsAll dialogsData={state.dialogsData} />
-                <DialogMassages massages={state.massages} dispatch={dispatch}
-                                newMessageText={state.newMessageText}
+                <DialogsAll dialogsData={props.state.dialogsData} />
+                <DialogMassages massages={props.state.massages} dispatch={props.dispatch}
+                                newMessageText={props.state.newMessageText}
                 />
             </div>
 
