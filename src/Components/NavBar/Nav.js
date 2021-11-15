@@ -5,8 +5,7 @@ import {NavLink} from "react-router-dom";
 import BestFriends from "./BestFriends";
 
 const Nav = ({state}) => {
-
-    let bestFriend =
+    let bestFriend  =
         state.bestFriends
             .map(user => <BestFriends
                 name={user.name}

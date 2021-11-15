@@ -1,8 +1,17 @@
 const  ADD_FRIEND_MESSAGE = 'ADD-FRIEND-MESSAGE'
 const ADD_FRIEND_MESSAGE_TEXT = 'ADD-FRIEND-MESSAGE-TEXT';
 
-
-const friendsReducer = (state, action ) => {
+let initialState = {
+    messages: [
+        {
+            id: 1,
+            name: "Sasha",
+            text: "Hi"
+        },
+    ],
+    newFriendsMessageText: '',
+}
+const friendsReducer = (state = initialState, action ) => {
     switch (action.type) {
         case ADD_FRIEND_MESSAGE :
             let newFriendMessage = {
