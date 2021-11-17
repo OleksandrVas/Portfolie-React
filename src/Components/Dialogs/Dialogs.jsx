@@ -1,17 +1,15 @@
 import React from "react";
 import classes from "./Dialogs.module.css";
 import DialogsAll from "./MainDialogs";
-import DialogMassages from "./Message/DialogMassages";
+import DialogMassagesContainer from "./Message/DialogMassagesContainer";
 
 
 const Dialogs = (props) => {
-
     return (
         <>
             <div className={classes.mainDialogsPage}>
                 <DialogsAll dialogsData={props.state.dialogsData} />
-                <DialogMassages massages={props.state.massages} dispatch={props.dispatch}
-                                newMessageText={props.state.newMessageText}
+                <DialogMassagesContainer store={props.store}
                 />
             </div>
 

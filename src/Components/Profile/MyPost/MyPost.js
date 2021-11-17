@@ -11,12 +11,11 @@ const MyPosts = (props) => {
     let onAddPost = () => {
         props.addPostMessage();
     }
-    let onPostChange = (e) => {
+    let onPostChange = () => {
         let text = newPost.current.value;
         props.addPostText(text)
 
     }
-
     return (
         <>
             <div className={classes.content}>

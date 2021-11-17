@@ -10,7 +10,6 @@ const MyPostsContainer = (props) => {
     let state=props.store.getState()
 
     let addPostMessage = () => {
-
         props.store.dispatch(addPostActionCreator());
     }
     let onPostChange = (text) => {
