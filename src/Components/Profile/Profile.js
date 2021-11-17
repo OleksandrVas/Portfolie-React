@@ -4,9 +4,8 @@ import MyPostsContainer from "./MyPost/MyPostContainer";
 
 
 const Profile = (props) => {
-
     let nameOfUserElement =
-        props.state.nameOfUser
+        props.store.getState().profilePage.nameOfUser
             .map(user => <ProfileContentLogo id={user.id}
                                              name={user.name}
                                              birthday={user.birthday}
@@ -16,7 +15,7 @@ const Profile = (props) => {
         <>
             <div>
                 {nameOfUserElement}
-                <MyPostsContainer  store={props.store}  />
+                <MyPostsContainer store={props.store}/>
             </div>
         </>
     );
