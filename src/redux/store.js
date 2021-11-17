@@ -125,15 +125,11 @@ let store = {
     },
 
 
-
-
-
-
     dispatch(action) {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
-        this._state.friendsMessages = friendsReducer(this._state.friendsMessages , action)
+        this._state.friendsMessages = friendsReducer(this._state.friendsMessages, action)
 
         this._callSubscriber(this._state)
 
