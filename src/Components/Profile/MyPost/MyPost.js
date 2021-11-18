@@ -6,7 +6,6 @@ import ProfilePost from "../Posts";
 
 
 const MyPosts = (props) => {
-    debugger
     let newPost = React.createRef()
 
     let onAddPost = () => {

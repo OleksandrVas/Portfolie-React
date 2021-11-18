@@ -11,11 +11,13 @@ const Profile = (props) => {
                                              birthday={user.birthday}
                                              position={user.position}
                                              job={user.job}/>)
+
     return (
         <>
             <div>
                 {nameOfUserElement}
                 <MyPostContainer />
+
             </div>
         </>
     );
