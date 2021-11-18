@@ -15,7 +15,7 @@ const Profile = (props) => {
         <>
             <div>
                 {nameOfUserElement}
-                <MyPostsContainer store={props.store}/>
+                <MyPostsContainer />
             </div>
         </>
     );

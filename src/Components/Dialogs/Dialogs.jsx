@@ -5,11 +5,12 @@ import DialogMassagesContainer from "./Message/DialogMassagesContainer";
 
 
 const Dialogs = (props) => {
+
     return (
         <>
             <div className={classes.mainDialogsPage}>
-                <DialogsAll dialogsData={props.state.dialogsData} />
-                <DialogMassagesContainer store={props.store}
+                <DialogsAll dialogsData={props.state.dialogPage.dialogsData} />
+                <DialogMassagesContainer
                 />
             </div>
 
