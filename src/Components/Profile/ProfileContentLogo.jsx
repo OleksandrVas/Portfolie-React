@@ -17,4 +17,6 @@ const ProfileContentLogo = (props) => {
         </>
     )
 }
+
+
 export default ProfileContentLogo;

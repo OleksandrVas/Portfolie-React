@@ -2,6 +2,7 @@ import React from "react";
 import {addPostActionCreator, updateNewPostCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPost";
 import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
 
 const MyPostsContainer = () => {
@@ -29,5 +30,30 @@ const MyPostsContainer = () => {
 
     );
 };
+
+
+let mapStateToProps = (state) => {
+    return {
+        postData : state.profilePage.postData,
+        newPostText : state.profilePage.newPostText,
+    }
+    // эта функция , принимает обьект
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPostMessage : () => {
+            dispatch(addPostActionCreator());
+        } ,
+        addPostText : (text) => {
+            let action = updateNewPostCreator(text)
+            dispatch(action)
+        },
+
+    }
+    // эта фунция ,принимает колбекФункции
+}
+
+const SuperProfileContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts)
+
 
 export default MyPostsContainer;
