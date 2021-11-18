@@ -1,32 +1,28 @@
 import React from "react";
 import {addFriendsMessage, addFriendsMessageText} from "../../redux/friends-reducer";
 import Friends from "./Friends";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
 
 
-const FriendsContainerContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    let state = store.getState();
-                    let onAddButtonClick = () => {
-                        store.dispatch(addFriendsMessage())
-                    };
-                    let onAddChangeArea = (text) => {
-                        let action = addFriendsMessageText(text);
-                        store.dispatch(action)
-                    }
-                    return <Friends state={state} onAddButtonClick={onAddButtonClick}
-                                    onAddChangeArea={onAddChangeArea}/>
-
-                }
-            }
-
-        </StoreContext.Consumer>
-
-
-    )
+let mapStateToProps = (state) => {
+    return {
+        state: state
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onAddButtonClick: () => {
+            dispatch(addFriendsMessage())
+        },
+        onAddChangeArea: (text) => {
+            let action = addFriendsMessageText(text);
+            dispatch(action)
+        }
+    }
+}
+
+const FriendsContainerContainer = connect(mapStateToProps, mapDispatchToProps)(Friends)
+
 
 export default FriendsContainerContainer

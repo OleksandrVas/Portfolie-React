@@ -12,8 +12,10 @@ const DialogMassages = (props) => {
         props.addMessage()
     }
     let onMessageChange = () => {
+
         let text = textMessageCurrent.current.value;
         props.onAddMessageChange(text);
+        console.log(text)
     }
     return (
         <>

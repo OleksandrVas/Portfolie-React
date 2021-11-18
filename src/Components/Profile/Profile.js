@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileContentLogo from "./ProfileContentLogo";
-import MyPostsContainer from "./MyPost/MyPostContainer";
+import MyPostContainer from "./MyPost/MyPostContainer";
 
 
 const Profile = (props) => {
@@ -15,7 +15,7 @@ const Profile = (props) => {
         <>
             <div>
                 {nameOfUserElement}
-                <MyPostsContainer />
+                <MyPostContainer />
             </div>
         </>
     );
