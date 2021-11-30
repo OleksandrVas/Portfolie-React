@@ -16,7 +16,7 @@ let initialState = {
         {message: "it's my first post ", id: 2, likesCount: 200},
         {message: "it's my second post  ", id: 3, likesCount: 183},
     ],
-    newPostText: ""
+    newPostText: ''
 
 } ;
 
@@ -31,7 +31,7 @@ let initialState = {
              let stateCopy = {...state};
              stateCopy.postData = [...state.postData]
              stateCopy.postData.push(newPost);
-             stateCopy.newPostText = '';
+             stateCopy.newPostText = ''
              return stateCopy;
          }
          case ADD_POST_TEXT : {
