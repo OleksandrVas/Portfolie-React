@@ -7,12 +7,12 @@ import {Provider} from "react-redux";
 
 
 
-let rerenderEntireTree = (state) => {
+
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
                 <Provider  store={store}>
-                    <App state={state} store={store}></App>
+                    <App  store={store}></App>
                 </Provider>
 
 
@@ -21,16 +21,11 @@ let rerenderEntireTree = (state) => {
         </React.StrictMode>,
         document.getElementById("root")
     );
-}
 
-rerenderEntireTree(store.getState())
 
-store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
-})
 
-export default rerenderEntireTree
+
+
 
 
 
