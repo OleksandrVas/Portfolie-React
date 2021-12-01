@@ -10,13 +10,14 @@ const Profile = (props) => {
                                              name={user.name}
                                              birthday={user.birthday}
                                              position={user.position}
-                                             job={user.job}/>)
+                                             job={user.job}
+                                             key={user.id}/>)
 
     return (
         <>
             <div>
                 {nameOfUserElement}
-                <MyPostContainer />
+                <MyPostContainer/>
 
             </div>
         </>

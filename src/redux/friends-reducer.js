@@ -19,17 +19,17 @@ const friendsReducer = (state = initialState, action) => {
                 name: "Vlad",
                 text: state.newFriendsMessageText,
             };
-            let stateCopy = {...state}
-            stateCopy.messages = [...state.messages]
-            stateCopy.messages.push(newFriendMessage);
-            state.newFriendsMessageText = ''
-            return stateCopy
+            return {
+                ...state,
+                newFriendsMessageText: '',
+
+            }
         }
         case   ADD_FRIEND_MESSAGE_TEXT : {
-let stateCopy = {...state}
-            stateCopy.newFriendsMessageText = [...state.newFriendsMessageText]
-            stateCopy.newFriendsMessageText = action.newFriendsMessageText
-            return stateCopy
+            return {
+                ...state,
+                newFriendsMessageText: action.newFriendsMessageText
+            }
         }
         default :
             return state

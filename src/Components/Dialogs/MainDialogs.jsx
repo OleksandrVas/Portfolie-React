@@ -5,7 +5,7 @@ import DialogItem from "./DialogsItem/DialogItem";
 const DialogsAll = (props) => {
 
     let dialogsElements = props.dialogsData
-        .map( dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/> )
+        .map( dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} img={dialog.img}/> )
 
     return (
         <>

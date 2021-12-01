@@ -28,20 +28,19 @@ let initialState = {
                  id: 4,
                  likesCount: 0
              };
-             let stateCopy = {...state};
-             stateCopy.postData = [...state.postData]
-             stateCopy.postData.push(newPost);
-             stateCopy.newPostText = ''
-             return stateCopy;
+             return {
+                     ...state ,
+                     newPostText : '',
+                     postData : [...state.postData,newPost]
+             }
          }
          case ADD_POST_TEXT : {
-             let stateCopy = {...state};
-             stateCopy.newPostText = [...state.newPostText]
-             stateCopy.newPostText = action.newText;
-             return stateCopy
+             return {
+                 ...state,
+                 newPostText : action.newText
+             }
          }
          default : {
-
              return state
          }
      }

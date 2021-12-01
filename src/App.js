@@ -6,6 +6,7 @@ import Nav from "../src/Components/NavBar/Nav"
 import Dialogs from "./Components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import FriendsContainer from "./Components/Friends/FriendsContainer";
+import Users from "./Components/Users/Users";
 
 
 const App = (props) => {
@@ -17,9 +18,7 @@ const App = (props) => {
             <div className="app-wrapper-content">
                 <Route path="/profile" render={() => <Profile store={props.store}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs state={props.store.getState()}/>}/>
-                <Route path="/news" render={() => <Profile />}/>
-                <Route path="/music" render={() => <Dialogs />}/>
-                <Route path="/settings" render={() => <Profile />}/>
+                <Route path="/users" render={() => <Users/>} />
                 <Route path="/friends" render={() => <FriendsContainer />}/>
             </div>
         </div>

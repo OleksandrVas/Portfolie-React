@@ -9,7 +9,8 @@ const ProfilePost = (props) => {
             .map(post => <Post
                 massage={post.message}
                 likesCount={post.likesCount}
-                id={post.id}/>)
+                id={post.id}
+                key={post.id}/>)
 
     return (
         <>

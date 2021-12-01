@@ -5,11 +5,12 @@ import {NavLink} from "react-router-dom";
 import BestFriends from "./BestFriends";
 
 const Nav = (props) => {
-    let bestFriend  =
+    let bestFriend =
         props.state.bestFriends
             .map(user => <BestFriends
                 name={user.name}
                 img={user.img}
+                key={user.id}
 
             />)
     return (
@@ -22,6 +23,9 @@ const Nav = (props) => {
                     <NavLink to="/dialogs" activeClassName={classes.active}>Messages</NavLink>
                 </div>
                 <div className={classes.item}>
+                    <NavLink to="/users" activeClassName={classes.active}>Find User</NavLink>
+                </div>
+                <div className={classes.item}>
                     <NavLink to="/news" activeClassName={classes.active}>News</NavLink>
                 </div>
                 <div className={classes.item}>
@@ -30,6 +34,7 @@ const Nav = (props) => {
                 <div className={classes.item}>
                     <NavLink to="/settings" activeClassName={classes.active}>Settings</NavLink>
                 </div>
+
                 <div className={classes.item}>
                     <NavLink to="/friends" id={classes.itemFriend} activeClassName={classes.active}>Friends</NavLink>
                     <div className={classes.icon}>

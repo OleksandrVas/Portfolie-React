@@ -17,7 +17,8 @@ const Friends = (props) => {
     let newFriendsMessages =
         props.state.friendsMessages.messages
             .map(user => <FriendsMessages id={user.id}
-                                          name={user.name} text={user.text}/>);
+                                          name={user.name} text={user.text}
+            key={user.id}/>);
 
     return (
         <>
