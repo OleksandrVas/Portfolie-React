@@ -6,7 +6,7 @@ import Nav from "../src/Components/NavBar/Nav"
 import Dialogs from "./Components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import FriendsContainer from "./Components/Friends/FriendsContainer";
-import Users from "./Components/Users/Users";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 
 const App = (props) => {
@@ -18,7 +18,7 @@ const App = (props) => {
             <div className="app-wrapper-content">
                 <Route path="/profile" render={() => <Profile store={props.store}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs state={props.store.getState()}/>}/>
-                <Route path="/users" render={() => <Users/>} />
+                <Route path="/users" render={() => <UsersContainer/>} />
                 <Route path="/friends" render={() => <FriendsContainer />}/>
             </div>
         </div>
