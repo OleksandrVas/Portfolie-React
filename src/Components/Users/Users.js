@@ -1,15 +1,28 @@
 import React from "react";
 import classes from "./users.module.css"
+import axios from "axios";
+import userDefaultPhoto from "../../assets/img/defaultUserImg.png"
 
 const Users = (props) => {
+console.log(props)
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
+    }
+
 
     return (
         <div>
+            <button onClick={getUsers}>Get Users </button>
             {
                 props.users.map(u => <div key={u.id}>
                         <span>
                     <div>
-                        <img src={u.photoUrl} className={classes.userPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : userDefaultPhoto}
+                             className={classes.userPhoto}/>
                     </div>
                     <div>
                         {u.followed
@@ -24,12 +37,12 @@ const Users = (props) => {
                 </span>
                         <span>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{"u.location.country"}</div>
+                        <div>{"u.location.city"}</div>
                     </span>
                 </span>
                         <div/>
@@ -39,5 +52,7 @@ const Users = (props) => {
             }
         </div>
     )
+
+
 }
 export default Users
