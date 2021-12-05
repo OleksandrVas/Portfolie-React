@@ -2,7 +2,7 @@ import React from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
 import {
-    followAC,
+    followAC, getStatusAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
@@ -46,7 +46,9 @@ class UsersContainer extends React.Component {
                    unfollow={this.props.unfollow}
                    follow={this.props.follow}
 
+
             />
+
         </>
 
     }
@@ -59,7 +61,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+
     }
 }
 let mapDispatchToProps = (dispatch) => {
