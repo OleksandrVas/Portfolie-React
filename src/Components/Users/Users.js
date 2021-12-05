@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./users.module.css";
 import userDefaultPhoto from "../../assets/img/defaultUserImg.png";
+import {unFollow} from "../../redux/users-reducer";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -33,7 +34,7 @@ const Users = (props) => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.id)
+                                props.unFollow(u.id)
                             }}>Unfollow</button>
                             : <button onClick={() => {
                                 props.follow(u.id)
