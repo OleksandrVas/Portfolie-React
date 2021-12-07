@@ -1,5 +1,6 @@
 import React from "react";
 import FriendsMessages from "./FriendsMessage/FriendsMessages";
+import {addFriendsMessage, addFriendsMessageText} from "../../redux/friends-reducer";
 
 
 const Friends = (props) => {
@@ -7,11 +8,11 @@ const Friends = (props) => {
     let friendText = React.createRef();
 
     let onButtonClick = () => {
-        props.onAddButtonClick()
+        props.addFriendsMessage()
     };
     let onChangeArea = () => {
         let text = friendText.current.value
-        props.onAddChangeArea(text)
+        props.addFriendsMessageText(text)
     };
 
     let newFriendsMessages =
