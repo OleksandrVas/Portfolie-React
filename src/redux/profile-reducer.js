@@ -48,8 +48,8 @@ let initialState = {
     return state ;
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostCreator = (text) => {
+export const addPost = () => ({type: ADD_POST})
+export const updateNewPost = (text) => {
     return {
         type: ADD_POST_TEXT,
         newText: text

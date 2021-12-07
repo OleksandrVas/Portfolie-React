@@ -92,23 +92,23 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    addPost() {
-
-        let newPost = {
-            message: this._state.profilePage.newPostText,
-            id: 4,
-            likesCount: 0
-        };
-        this._state.profilePage.postData.push(newPost);
-        this._callSubscriber(this._state)
-        this.addPostText('')
-
-    },
-    addPostText(newText) {
-
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state)
-    },
+    // addPost() {
+    //Это нахлджится уже в reducer
+    //     let newPost = {
+    //         message: this._state.profilePage.newPostText,
+    //         id: 4,
+    //         likesCount: 0
+    //     };
+    //     this._state.profilePage.postData.push(newPost);
+    //     this._callSubscriber(this._state)
+    //     this.addPostText('')
+    //
+    // },
+    // addPostText(newText) {
+    //
+    //     this._state.profilePage.newPostText = newText;
+    //     this._callSubscriber(this._state)
+    // },
     addMessage() {
         let addMessages = {
             id: 4,
