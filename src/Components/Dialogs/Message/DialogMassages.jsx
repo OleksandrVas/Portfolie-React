@@ -4,6 +4,7 @@ import MessageCreat from "./MessageCreat";
 
 
 
+
 const DialogMassages = (props) => {
 
     let textMessageCurrent = React.createRef()
@@ -14,7 +15,7 @@ const DialogMassages = (props) => {
     let onMessageChange = () => {
 
         let text = textMessageCurrent.current.value;
-        props.onAddMessageChange(text);
+        props.addMessageText(text);
         console.log(text)
     }
     return (
