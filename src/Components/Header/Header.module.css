@@ -11,4 +11,12 @@
     margin-top: auto;
     margin-left: 10px;
 }
+.loginBlock {
+    width: 100%;
+    text-align: right;
+}
+.loginBlock > a {
+    text-decoration: none;
+    color: white ;
+}
   
