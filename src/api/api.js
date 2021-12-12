@@ -22,7 +22,7 @@ export const usersApi = {
 export const unFollowApi = {
     unfollow(id = 1) {
         return (
-            instance.delete(`/follow/${id}`)
+            instance.post(`/follow/${id}`)
         )
     }
 }
