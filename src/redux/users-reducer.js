@@ -1,3 +1,5 @@
+import {usersApi} from "../api/api";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET-USERS"
@@ -82,5 +84,45 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
     isFetching,
     userId
 })
+
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        usersApi.getUsers(currentPage, pageSize)
+            .then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            // this.props.setTotalUsersCount(response.data.totalCount) убрал , чтобы было не так много сттаниц с пользователями
+        })
+    }
+}
+
+export const followUser = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, userId))
+        usersApi.unfollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 1) {
+                    dispatch(unFollow(userId))
+                }
+                dispatch(toggleFollowingInProgress(false , userId))
+            })
+    }
+}
+export const unFollowUser = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, userId))
+        usersApi.unfollow(userId)
+            .then(response => {
+                    if (response.data.resultCode === 0) {
+                        dispatch(follow(userId))
+                    }
+                    dispatch(toggleFollowingInProgress(false , userId))
+                }
+
+            )
+    }
+}
+
 
 export default userReducer
