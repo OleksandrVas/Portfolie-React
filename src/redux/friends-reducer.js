@@ -22,6 +22,7 @@ const friendsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newFriendsMessageText: '',
+                messages : [...state.messages , newFriendMessage]
 
             }
         }
