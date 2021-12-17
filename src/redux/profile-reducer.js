@@ -69,13 +69,24 @@ export const updateNewPost = (text) => {
 }
 
 
-export const getUsers = (userId) =>{
-     return (dispatch) => {
-         usersApi.getUserPage(userId)
-             .then( response => {
-                 dispatch(setUserProfile(response.data))
-             })
-     }
+// export const getUsers = (userId) =>{
+//      return (dispatch) => {
+//          usersApi.getUserPage(userId)
+//              .then( response => {
+//                  dispatch(setUserProfile(response.data))
+//              })
+//      }
+// }
+
+
+
+
+export const getUsers = (userId) =>
+    (dispatch) => {
+    usersApi.getUserPage(userId)
+        .then( response => {
+            dispatch(setUserProfile(response.data))
+        })
 }
 
 export default profileReducer;
