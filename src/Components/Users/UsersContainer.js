@@ -9,6 +9,8 @@ import {
     unFollowUser
 } from "../../redux/users-reducer";
 import Preloader from "../Common/Preloader/Preloader";
+import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -17,7 +19,7 @@ class UsersContainer extends React.Component {
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber,this.props.pageSize)
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -78,7 +80,17 @@ let mapStateToProps = (state) => {
 //
 // }
 
+export default compose(
+    connect(mapStateToProps, {
+        setCurrentPage,
+        toggleFollowingInProgress,
+        getUsers, followUser,
+        unFollowUser,
+    }),
+    WithAuthRedirect
+)(UsersContainer)
 
-export default connect(mapStateToProps, {
-     setCurrentPage, toggleFollowingInProgress, getUsers,followUser,unFollowUser,
-})(UsersContainer)
+// Как работает compose :мы передаем клас. комп. вторым вызовом ,
+// далее идет цепочка снизу вверх -> WithAuthRedirect(UsersContainer) ->
+//connect(mapStateToProps, {setCurrentPage,toggleFollowingInProgress,getUsers, followUser,unFollowUser,})(WithAuthRedirect(UsersContainer))
+// то есть идет послеовательность действий

@@ -18,7 +18,7 @@ const DialogMassages = (props) => {
         console.log(text)
     }
 
-    if(!props.isAuth) return <Redirect to={"/login"}/> // задача : сделать проверку , и в случаечходства -> переправить на страниц   props.isAuth === false это та же запись  если нет , то ....
+     // задача : сделать проверку , и в случаечходства -> переправить на страниц   props.isAuth === false это та же запись  если нет , то ....
 
     console.log(props.isAuth)
     return (
