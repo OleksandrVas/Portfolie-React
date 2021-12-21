@@ -1,7 +1,8 @@
 import React from "react";
 import MyPostContainer from "./MyPost/MyPostContainer";
 import ProfilePage from "./ProfilePage";
-import {Redirect} from "react-router-dom";
+import ProfileStatus from "./ProfileStatus";
+
 
 
 const Profile = (props) => {
@@ -13,6 +14,7 @@ console.log(props.isAuth)
         <>
             <div>
                 <ProfilePage profile={props.profile} />
+                <ProfileStatus status={"Hello-Sas"}/>
                 <MyPostContainer/>
             </div>
         </>
