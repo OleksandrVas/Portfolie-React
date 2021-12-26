@@ -6,15 +6,13 @@ import ProfileStatus from "./ProfileStatus";
 
 
 const Profile = (props) => {
-console.log(props.isAuth)
-
 
 
     return (
         <>
             <div>
                 <ProfilePage profile={props.profile} />
-                <ProfileStatus status={"Hello-Sas"}/>
+                <ProfileStatus status={"Hey Bro"}/>
                 <MyPostContainer/>
             </div>
         </>

@@ -2,10 +2,12 @@ import React from "react";
 
 
 class ProfileStatus extends React.Component {
-
+    //localState
     state = {
         editMode: false
     }
+    //localState
+
 
     activateEditMode = () => {
         this.setState({
