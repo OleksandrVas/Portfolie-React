@@ -1,5 +1,5 @@
 import React from "react";
-import {addPost, updateNewPost} from "../../../redux/profile-reducer";
+import {addPost} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPost";
 import {connect} from "react-redux";
 
@@ -23,10 +23,10 @@ let mapStateToProps = (state) => {
 //         },
 //
 //     }
-    // эта фунция ,принимает колбекФункции
+    // эта фунция ,принимает колбек Функции
 }
 
-const  MyPostContainer = connect(mapStateToProps,{addPost,updateNewPost})(MyPosts);
+const  MyPostContainer = connect(mapStateToProps,{addPost})(MyPosts);
 
 export default MyPostContainer;
 

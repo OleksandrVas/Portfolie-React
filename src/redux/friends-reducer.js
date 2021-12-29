@@ -1,5 +1,5 @@
 const ADD_FRIEND_MESSAGE = 'ADD-FRIEND-MESSAGE'
-const ADD_FRIEND_MESSAGE_TEXT = 'ADD-FRIEND-MESSAGE-TEXT';
+
 
 let initialState = {
     messages: [
@@ -8,8 +8,7 @@ let initialState = {
             name: "Sasha",
             text: "Hi"
         },
-    ],
-    newFriendsMessageText: '',
+    ]
 }
 const friendsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -17,19 +16,11 @@ const friendsReducer = (state = initialState, action) => {
             let newFriendMessage = {
                 id: 2,
                 name: "Vlad",
-                text: state.newFriendsMessageText,
+                text: action.newFriendsMessageText,
             };
             return {
                 ...state,
-                newFriendsMessageText: '',
                 messages : [...state.messages , newFriendMessage]
-
-            }
-        }
-        case   ADD_FRIEND_MESSAGE_TEXT : {
-            return {
-                ...state,
-                newFriendsMessageText: action.newFriendsMessageText
             }
         }
         default :
@@ -38,12 +29,7 @@ const friendsReducer = (state = initialState, action) => {
     return state
 }
 
-export const addFriendsMessage = () => ({type: ADD_FRIEND_MESSAGE});
-export const addFriendsMessageText = (text) => {
-    return {
-        type: ADD_FRIEND_MESSAGE_TEXT,
-        newFriendsMessageText: text
-    }
-}
+export const addFriendsMessage = (newFriendsMessageText) => ({type: ADD_FRIEND_MESSAGE ,newFriendsMessageText});
+
 
 export default friendsReducer

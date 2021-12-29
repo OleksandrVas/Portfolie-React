@@ -1,5 +1,5 @@
 import React from "react";
-import {addFriendsMessage, addFriendsMessageText} from "../../redux/friends-reducer";
+import {addFriendsMessage} from "../../redux/friends-reducer";
 import Friends from "./Friends";
 import {connect} from "react-redux";
 
@@ -22,7 +22,7 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-const FriendsContainerContainer = connect(mapStateToProps, {addFriendsMessage,addFriendsMessageText })(Friends)
+const FriendsContainerContainer = connect(mapStateToProps, {addFriendsMessage })(Friends)
 
 
 export default FriendsContainerContainer

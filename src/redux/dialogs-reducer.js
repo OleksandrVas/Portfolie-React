@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const ADD_MESSAGE_TEXT = 'ADD-MESSAGE-TEXT';
+
 
 let initialState = {
     dialogsData: [
@@ -28,8 +28,7 @@ let initialState = {
         {id: 1, massage: "demon hello"},
         {id: 2, massage: "Vlad kak ti"},
         {id: 3, massage: "Sasha i miss you too"},
-    ],
-    newMessageText: ""
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -39,31 +38,20 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE : {
             let addMessages = {
                 id: 4,
-                massage: state.newMessageText
+                massage: action.dialogForm
             }
             return {
                 ...state,
-                newMessageText : "",
                 massages : [...state.massages,addMessages],
             }
         }
-        case ADD_MESSAGE_TEXT :{
-            return {
-                ...state,
-                newMessageText : action.text
-            }
-        }
+
         default :
             return state
     }
 
 }
-export const addMessage = () => ({type: ADD_MESSAGE});
-export const addMessageText = (text) => {
-    return {
-        type: ADD_MESSAGE_TEXT,
-        text: text
-    }
-};
+export const addMessage = (dialogForm) => ({type: ADD_MESSAGE , dialogForm});
+
 
 export default dialogsReducer

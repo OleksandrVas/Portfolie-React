@@ -1,38 +1,50 @@
 import React from "react";
 import FriendsMessages from "./FriendsMessage/FriendsMessages";
-import {addFriendsMessage, addFriendsMessageText} from "../../redux/friends-reducer";
+import {Field, reduxForm} from "redux-form";
 
 
 const Friends = (props) => {
 
-    let friendText = React.createRef();
+    const onPostSend = (values) => {
+        props.addFriendsMessage(values.newFriendsMessageText)
+    }
 
-    let onButtonClick = () => {
-        props.addFriendsMessage()
-    };
-    let onChangeArea = () => {
-        let text = friendText.current.value
-        props.addFriendsMessageText(text)
-    };
 
     let newFriendsMessages =
         props.state.friendsMessages.messages
             .map(user => <FriendsMessages id={user.id}
                                           name={user.name} text={user.text}
-            key={user.id}/>);
-
+                                          key={user.id}/>);
     return (
         <>
             <div>
                 {newFriendsMessages}
-                <textarea value={props.state.friendsMessages.newFriendsMessageText} ref={friendText}
-                          onChange={onChangeArea}/>
-                <div>
-                    <button onClick={onButtonClick}>add Friend's messages</button>
-                </div>
+                <AddFriendsMessageRedux onSubmit={onPostSend}/>
             </div>
         </>
     )
 }
+
+const AddFriendsMessage = (props) => {
+    return (
+        <>
+            <form onSubmit={props.handleSubmit}>
+                <div>
+                    <Field component="textarea" name="newFriendsMessageText" placeholder="Send"/>
+                </div>
+                <div>
+                    <button>
+                        Send
+                    </button>
+                </div>
+            </form>
+        </>
+    )
+}
+
+const AddFriendsMessageRedux = reduxForm({
+    form: "post"
+})(AddFriendsMessage)
+
 
 export default Friends
