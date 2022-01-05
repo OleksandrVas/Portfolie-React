@@ -86,8 +86,7 @@ export default compose(
         toggleFollowingInProgress,
         getUsers, followUser,
         unFollowUser,
-    }),
-    WithAuthRedirect
+    })
 )(UsersContainer)
 
 // Как работает compose :мы передаем клас. комп. вторым вызовом ,

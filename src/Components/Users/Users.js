@@ -11,6 +11,7 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+    debugger
     return (
         <div>
             <div>
@@ -21,12 +22,8 @@ const Users = (props) => {
                                   props.onPageChanged(p)
                               }}>{p}</span>
                     )
-                    {
-                        debugger
-                    }
                 })}
             </div>
-
             {
                 props.users.map(u => <div key={u.id}>
                         <span>
@@ -64,6 +61,7 @@ const Users = (props) => {
             }
         </div>
     )
+
 }
 
 export default Users
