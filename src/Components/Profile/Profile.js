@@ -1,7 +1,7 @@
 import React from "react";
 import MyPostContainer from "./MyPost/MyPostContainer";
 import ProfilePage from "./ProfilePage";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 
@@ -12,7 +12,7 @@ const Profile = (props) => {
         <>
             <div>
                 <ProfilePage profile={props.profile}  status={props.status}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 <MyPostContainer/>
             </div>
         </>
