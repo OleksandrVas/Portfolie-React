@@ -9,7 +9,7 @@ const ProfileStatusWithHooks = (props) => {
 
     useEffect( () => {
         setStatus(props.status)
-    },[props.status])
+    },[props.status])  //в [] идет зависимость от того чего нужно вызывать эту функцию
 
     const activateMode = () => {
        setEditMode(true)
