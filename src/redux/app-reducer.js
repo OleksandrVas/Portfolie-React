@@ -28,7 +28,7 @@ export const initializeApp = () => (dispatch) => {
     let promise = dispatch(setUsers())
     // dispatch(someThingElse())
     // dispatch(someThingElse())
-    debugger
+
     Promise.all([promise])
         .then(() => {
             dispatch(setInitializedSuccess())

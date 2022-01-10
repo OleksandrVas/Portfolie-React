@@ -15,7 +15,6 @@ const ProfilePage = (props) => {
             </>
         )
     }
-    console.log(props.status)
     let src = props.profile.photos.small;
     return (
         <>

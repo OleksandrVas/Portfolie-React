@@ -3,7 +3,6 @@ import Post from "./MyPost/post/Post";
 
 
 const ProfilePost = (props) => {
-
     let postDataElement =
         props.postData
             .map(post => <Post
@@ -11,7 +10,6 @@ const ProfilePost = (props) => {
                 likesCount={post.likesCount}
                 id={post.id}
                 key={post.id}/>)
-
     return (
         <>
             <div>
@@ -19,5 +17,6 @@ const ProfilePost = (props) => {
             </div>
         </>
     )
-}
+};
+
 export default ProfilePost
