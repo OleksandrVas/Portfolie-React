@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
-import {Input} from "../Common/FormsControl/FormsControl";
+import {createField, Input} from "../Common/FormsControl/FormsControl";
 import {maxLengthCreator, required} from "../../utils/validators/validator";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
@@ -12,24 +12,16 @@ const maxLength30 = maxLengthCreator(30)
 const maxLength15 = maxLengthCreator(15)
 
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={"Email"} name={"email"} component={Input} validate={[required, maxLength30]}/>
-            </div>
-            <div>
-                <Field placeholder={"Password"} name={"password"} type={"password"} component={Input}
-                       validate={[required, maxLength15]}/>
-            </div>
-            <div>
-                <Field type={"checkbox"} name={"rememberMe"} component={Input}/> remember me
-            </div>
-
-            {props.error &&
+        <form onSubmit={handleSubmit}>
+            {createField("Email", "email", Input, required,maxLength30   )}
+            {createField("Password", "password", Input, required, maxLength15 ,"password")}
+            {/*{createField(null, "rememberMe", Input, [],null ,"checkbox" , "remember me")}*/}
+            {error &&
             <div className={classes.formSummaryError}>
-                    {props.error}
+                {error}
             </div>}
             <div>
                 <button>Login</button>
@@ -43,12 +35,12 @@ const ContactForm = reduxForm({
 })(LoginForm)
 
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     }
     //редирект на /profile
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={"/profile"}/>
     }
 
@@ -59,7 +51,7 @@ const Login = (props) => {
         </>
     )
 }
-let mapStateToTheProps = (props) => ({
-    isAuth: props.auth.isAuth
+let mapStateToTheProps = ({auth}) => ({
+    isAuth: auth.isAuth
 })
 export default connect(mapStateToTheProps, {login})(Login)

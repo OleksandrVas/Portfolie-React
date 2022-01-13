@@ -25,7 +25,6 @@ let mapStateToProps = (state) => {
 //     }
     // эта фунция ,принимает колбек Функции
 }
-
 const  MyPostContainer = connect(mapStateToProps,{addPost})(MyPosts);
 
 export default MyPostContainer;

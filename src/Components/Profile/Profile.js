@@ -4,14 +4,12 @@ import ProfilePage from "./ProfilePage";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
-const Profile = (props) => {
-    console.log("Rerender ")
-    debugger
+const Profile = ({profile,status,updateStatus}) => {
     return (
         <>
             <div>
-                <ProfilePage profile={props.profile} status={props.status}/>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <ProfilePage profile={profile} status={status}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 <MyPostContainer/>
             </div>
         </>
