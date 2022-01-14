@@ -4,12 +4,9 @@ import {Field, reduxForm} from "redux-form";
 
 
 const Friends = (props) => {
-
     const onPostSend = (values) => {
         props.addFriendsMessage(values.newFriendsMessageText)
     }
-
-
     let newFriendsMessages =
         props.state.friendsMessages.messages
             .map(user => <FriendsMessages id={user.id}
@@ -24,7 +21,6 @@ const Friends = (props) => {
         </>
     )
 }
-
 const AddFriendsMessage = (props) => {
     return (
         <>

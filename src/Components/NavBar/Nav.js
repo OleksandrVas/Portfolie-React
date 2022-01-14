@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./Nav.module.css"
-import {NavLink} from "react-router-dom";
 
 import BestFriends from "./BestFriends";
+import NavBarLink from "./NavBarLink";
 
 const Nav = (props) => {
     let bestFriend =
@@ -16,31 +16,14 @@ const Nav = (props) => {
     return (
         <>
             <nav className={classes.nav}>
-                <div className={classes.item}>
-                    <NavLink to="/profile" activeClassName={classes.active}>Profile</NavLink>
-                </div>
-                <div className={classes.item}>
-                    <NavLink to="/dialogs" activeClassName={classes.active}>Messages</NavLink>
-                </div>
-                <div className={classes.item}>
-                    <NavLink to="/users" activeClassName={classes.active}>Find User</NavLink>
-                </div>
-                <div className={classes.item}>
-                    <NavLink to="/news" activeClassName={classes.active}>News</NavLink>
-                </div>
-                <div className={classes.item}>
-                    <NavLink to="/music" activeClassName={classes.active}>Music</NavLink>
-                </div>
-                <div className={classes.item}>
-                    <NavLink to="/settings" activeClassName={classes.active}>Settings</NavLink>
-                </div>
-
-                <div className={classes.item}>
-                    <NavLink to="/friends" id={classes.itemFriend} activeClassName={classes.active}>Friends</NavLink>
-                    <div className={classes.icon}>
-                        {bestFriend}
-                    </div>
-                </div>
+                <NavBarLink to={"/profile"} text={"Profile"}/>
+                <NavBarLink to={"/dialogs"} text={"Messages"}/>
+                <NavBarLink to={"/users"} text={"Find User"}/>
+                <NavBarLink to={"/news"} text={"News"}/>
+                <NavBarLink to={"/music"} text={"Music"}/>
+                <NavBarLink to={"/settings"} text={"Settings"}/>
+                <NavBarLink to={"/friends"} text={"Friends"}/>
+                <div className={classes.icon}>{bestFriend}</div>
             </nav>
         </>
     );
