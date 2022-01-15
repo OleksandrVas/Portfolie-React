@@ -8,6 +8,7 @@ import {compose} from "redux";
 
 
 class HeaderContainer extends React.Component {
+
     render() {
         return (
             <>
@@ -25,10 +26,6 @@ let mapStateToProps = (state) => {
 
     }
 }
-
-
-
-
 
 export default compose(
     connect(mapStateToProps, {logout}),
