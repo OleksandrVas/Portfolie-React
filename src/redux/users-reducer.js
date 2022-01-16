@@ -13,7 +13,7 @@ const TOGGLE_IS_FOLLOWING_IN_PROGRESS = "TOGGLE-IS-FOLLOWING-IN-PROGRESS"
 let initialState = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 20,
+    totalUsersCount: 100,
     currentPage: 1,
     isFetching: {},
     followingInProgress: []
@@ -100,10 +100,10 @@ const followUnfollowFlow = async (dispatch,userId,apiMethod,actionCreator) => {
     dispatch(toggleFollowingInProgress(false, userId))
 }
 export const followUser = (userId) => async (dispatch) => {
-    followUnfollowFlow(dispatch,userId,usersApi.follow.bind(usersApi),unFollow)
+    await followUnfollowFlow(dispatch,userId,usersApi.follow.bind(usersApi),unFollow)
 }
 export const unFollowUser = (userId) => async (dispatch) => {
-    followUnfollowFlow(dispatch,userId,usersApi.unfollow.bind(usersApi),follow)
+   await followUnfollowFlow(dispatch,userId,usersApi.unfollow.bind(usersApi),follow)
 }
 
 

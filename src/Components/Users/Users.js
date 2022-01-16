@@ -1,10 +1,11 @@
 import React from "react";
 import Paginator from "../Common/Paginator/Paginator";
+import classes from "./users.module.css";
 import User from "./User";
 
 const Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props}) => {
     return (
-        <div>
+        <div className={classes.positionUsersDisplay}>
             <Paginator currentPage={currentPage} onPageChanged={onPageChanged} totalUsersCount={totalUsersCount}
                        pageSize={pageSize}/>
             <div>
