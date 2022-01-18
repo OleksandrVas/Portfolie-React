@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/Portfolie-React/static/css/main.863a44b8.chunk.css",
+    "main.js": "/Portfolie-React/static/js/main.f05a5d8d.chunk.js",
+    "main.js.map": "/Portfolie-React/static/js/main.f05a5d8d.chunk.js.map",
+    "runtime-main.js": "/Portfolie-React/static/js/runtime-main.c25fe8fa.js",
+    "runtime-main.js.map": "/Portfolie-React/static/js/runtime-main.c25fe8fa.js.map",
+    "static/js/2.f22e95ab.chunk.js": "/Portfolie-React/static/js/2.f22e95ab.chunk.js",
+    "static/js/2.f22e95ab.chunk.js.map": "/Portfolie-React/static/js/2.f22e95ab.chunk.js.map",
+    "static/css/3.de5d8816.chunk.css": "/Portfolie-React/static/css/3.de5d8816.chunk.css",
+    "static/js/3.ab82d121.chunk.js": "/Portfolie-React/static/js/3.ab82d121.chunk.js",
+    "static/js/3.ab82d121.chunk.js.map": "/Portfolie-React/static/js/3.ab82d121.chunk.js.map",
+    "static/js/4.97d90513.chunk.js": "/Portfolie-React/static/js/4.97d90513.chunk.js",
+    "static/js/4.97d90513.chunk.js.map": "/Portfolie-React/static/js/4.97d90513.chunk.js.map",
+    "static/js/5.f31f5d4b.chunk.js": "/Portfolie-React/static/js/5.f31f5d4b.chunk.js",
+    "static/js/5.f31f5d4b.chunk.js.map": "/Portfolie-React/static/js/5.f31f5d4b.chunk.js.map",
+    "index.html": "/Portfolie-React/index.html",
+    "static/css/3.de5d8816.chunk.css.map": "/Portfolie-React/static/css/3.de5d8816.chunk.css.map",
+    "static/css/main.863a44b8.chunk.css.map": "/Portfolie-React/static/css/main.863a44b8.chunk.css.map",
+    "static/js/2.f22e95ab.chunk.js.LICENSE.txt": "/Portfolie-React/static/js/2.f22e95ab.chunk.js.LICENSE.txt",
+    "static/media/defaultUserImg.png": "/Portfolie-React/static/media/defaultUserImg.32dad8bb.png",
+    "static/media/preloader.b767aab4.svg": "/Portfolie-React/static/media/preloader.b767aab4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c25fe8fa.js",
+    "static/js/2.f22e95ab.chunk.js",
+    "static/css/main.863a44b8.chunk.css",
+    "static/js/main.f05a5d8d.chunk.js"
+  ]
+}
