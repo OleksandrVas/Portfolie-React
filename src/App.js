@@ -1,7 +1,7 @@
 import React, {lazy} from "react";
 import "./App.css";
 import Nav from "../src/Components/NavBar/Nav"
-import {BrowserRouter, Route, Switch, withRouter} from "react-router-dom";
+import {HashRouter , Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
@@ -50,11 +50,11 @@ let AppContainer = compose(
     connect(mapStateToProps, {initializeApp}))(App);
 
 let SamuraiAppJs = (props) => {
-    return <BrowserRouter>
+    return <HashRouter>
         <Provider store={store}>
             <AppContainer store={store}/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 export default SamuraiAppJs
