@@ -7,10 +7,10 @@ const User = ({users, followUser, unFollowUser, followingInProgress, ...props}) 
     console.log(users.photos)
     return (
         <div>
-                        <span>
+            <span>
                     <div>
                         <NavLink to={"/profile/" + users.id}>
-                            <img src={users.photos.small != null ?  users.photos.small :userDefaultPhoto }
+                            <img src={users.photos.small != null ? users.photos.small : userDefaultPhoto}
                                  className={classes.userPhoto}/>
                         </NavLink>
                     </div>
@@ -24,7 +24,7 @@ const User = ({users, followUser, unFollowUser, followingInProgress, ...props}) 
                             }}>follow</button>}
 
                     </div>
-                </span>
+            </span>
             <span>
                     <span>
                         <div>{users.name}</div>

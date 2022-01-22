@@ -36,7 +36,6 @@ export const setUsers = () => async (dispatch) => {
         dispatch(setAuthUserData(id, login, email, true))
     }
 }
-
 export const login = (email, password, rememberMe) => async (dispatch) => {
     let response = await authAPI.login(email, password, rememberMe);
     if (response.data.resultCode === 0) {
@@ -47,7 +46,7 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
     }
 }
 export const logout = () => async (dispatch) => {
-    let response = await  authAPI.logout();
+    let response = await authAPI.logout();
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
     }

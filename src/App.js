@@ -1,7 +1,7 @@
 import React, {lazy} from "react";
 import "./App.css";
 import Nav from "../src/Components/NavBar/Nav"
-import {HashRouter , Route, Switch, withRouter} from "react-router-dom";
+import {HashRouter, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
@@ -14,11 +14,13 @@ import Dialogs from "./Components/Dialogs/Dialogs";
 const UsersContainer = React.lazy(() => import('./Components/Users/UsersContainer'))
 const FriendsContainer = React.lazy(() => import('./Components/Friends/FriendsContainer'))
 const Login = React.lazy(() => import('./Components/UserLogin/Login'))
+
 //
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
     }
+
     render() {
         if (!this.props.initialized) {
             return <Preloader/>
@@ -29,11 +31,11 @@ class App extends React.Component {
                 <Nav state={this.props.store.getState().sideBar}/>
                 <div className="app-wrapper-content">
                     <React.Suspense fallback={<div>Загрузка...</div>}>
-                            <Route  path="/profile/:userId?" render={() => <ProfileContainer/>}/>
-                            <Route path="/dialogs" render={() => <Dialogs state={this.props.store.getState()}/>}/>
-                            <Route path="/users" render={() => <UsersContainer/>}/>
-                            <Route path="/friends" render={() => <FriendsContainer/>}/>
-                            <Route path="/login" render={() => <Login/>}/>
+                        <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+                        <Route path="/dialogs" render={() => <Dialogs state={this.props.store.getState()}/>}/>
+                        <Route path="/users" render={() => <UsersContainer/>}/>
+                        <Route path="/friends" render={() => <FriendsContainer/>}/>
+                        <Route path="/login" render={() => <Login/>}/>
                     </React.Suspense>
                 </div>
             </div>
