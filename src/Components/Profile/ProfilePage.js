@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import Preloader from "../Common/Preloader/Preloader";
 import classes from "./Profile.module.css";
-import defaultImg from "../../assets/img/defaultUserImg.png"
+import ProfileData from "./ProfileData";
+import ProfilePhotoData from "./ProfilePhotoData";
+import ProfileDataFormReduxForm from "./ProfileDataForm";
 
-const ProfilePage = ({profile,status , isOwner,savePhoto}) => {
-    let defaultStatus = "Hi , i'm without status!"
-    let defaultStatusForAJobDescr = "Hi , i'm without work!"
+const ProfilePage = ({profile, status, isOwner, savePhoto , saveProfile}) => {
+    const [editMode, setEditMode] = useState(false)
+
     if (!profile) {
         return (
             <>
@@ -15,29 +17,31 @@ const ProfilePage = ({profile,status , isOwner,savePhoto}) => {
             </>
         )
     }
-    let src = profile.photos.large;
-
-    const onMainPhotoSelected =(e) => {
-        if(e.target.files.length){
-            savePhoto(e.target.files[0])
-        }
+    const onSubmit = (formData) => {
+        saveProfile(formData);
+        setEditMode(false )
     }
     return (
         <>
             <div className={classes.contentLogo}>
-                <img src={src || defaultImg}/>
-                <div className={classes.contentLogoAbout}>
-                    {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
-                    <div>My name is {profile.fullName}</div>
-                    <div>{profile.aboutMe != null ? profile.aboutMe : defaultStatus}</div>
-                    <div>{profile.lookingForAJobDescription != null ? profile.lookingForAJobDescription : defaultStatusForAJobDescr}</div>
-                    <div>{status }</div>
-                </div>
+                <ProfilePhotoData profilePhotoSize={profile.photos.large} savePhoto={savePhoto} isOwner={isOwner}/>
+
+
+                {editMode ? <ProfileDataFormReduxForm initialValues={profile}
+                                                      onSubmit={onSubmit}
+                                                      status={status} profile={profile}/>
+                    : <ProfileData profile={profile} status={status}
+                                   isOwner={isOwner}
+                                   gotToEditMode={() => {
+                                       setEditMode(true)
+                                   }}/>
+                }
+
+                {/*<ProfileData profile={profile} status={status}/>*/}
             </div>
         </>
     )
-
-
 }
+
 
 export default ProfilePage
