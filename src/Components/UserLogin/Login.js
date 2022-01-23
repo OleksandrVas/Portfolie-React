@@ -12,13 +12,21 @@ const maxLength30 = maxLengthCreator(30)
 const maxLength15 = maxLengthCreator(15)
 
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {createField("Email", "email", Input, required,maxLength30   )}
-            {createField("Password", "password", Input, required, maxLength15 ,"password")}
-            {/*{createField(null, "rememberMe", Input, [],null ,"checkbox" , "remember me")}*/}
+            {createField("Email", "email", required, Input)}
+            {createField("Password", "password", required, Input, {type: "password"})}
+            {createField(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me ")}
+            {captchaUrl &&
+            <div>
+                <img src={captchaUrl}/>
+            </div>
+            }
+            {captchaUrl &&
+            createField("Captcha", "captcha", required, Input,)
+            }
             {error &&
             <div className={classes.formSummaryError}>
                 {error}
@@ -35,9 +43,9 @@ const ContactForm = reduxForm({
 })(LoginForm)
 
 
-const Login = ({login, isAuth}) => {
+const Login = ({login, isAuth, captchaUrl}) => {
     const onSubmit = (formData) => {
-        login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     //редирект на /profile
     if (isAuth) {
@@ -47,11 +55,12 @@ const Login = ({login, isAuth}) => {
     return (
         <>
             <h1>Login</h1>
-            <ContactForm onSubmit={onSubmit}/>
+            <ContactForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
         </>
     )
 }
-let mapStateToTheProps = ({auth}) => ({
-    isAuth: auth.isAuth
+let mapStateToTheProps = (state) => ({
+    captchaUrl: state.auth.captchaUrl,
+    isAuth: state.auth.isAuth
 })
 export default connect(mapStateToTheProps, {login})(Login)
