@@ -26,14 +26,10 @@ class ProfileContainer extends React.Component {
        if( this.props.match.params.userId !== prevProps.match.params.userId){
            this.refreshProfile()
        }
-
     }
-
     render() {
-
         return (
             <>
-
                 <Profile saveProfile={this.props.saveProfile} savePhoto={this.props.savePhoto} isOwner={!this.props.match.params.userId } {...this.props} profile={this.props.profile} status={this.props.status}  updateStatus={this.props.updateStatus}/>
             </>
         )
