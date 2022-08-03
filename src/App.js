@@ -43,9 +43,9 @@ class App extends React.Component {
                     <React.Suspense fallback={<div>Загрузка...</div>}>
                         <Switch>
                             <Route path='/' exact> <Redirect to='/profile'/> </Route>
-                            <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+                            <Route path="/profile/:userId?" render={() => <ProfileContainer color={"red"}/>}/>
                             <Route path="/dialogs" render={() => <Dialogs state={this.props.store.getState()}/>}/>
-                            <Route path="/users" render={() => <UsersContainer/>}/>
+                            <Route path="/users" render={() => <UsersContainer title = "Hello Pigin" />}/>
                             <Route path="/friends" render={() => <FriendsContainer/>}/>
                             <Route path="/login" render={() => <Login/>}/>
                             <Route path="*" render={() => <div> 404 NOT FOUND </div>}/>
@@ -65,7 +65,7 @@ let AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App);
 
-let SamuraiAppJs = (props) => {
+let SamuraiAppJs = () => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer store={store}/>

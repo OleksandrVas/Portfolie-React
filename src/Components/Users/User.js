@@ -4,7 +4,6 @@ import userDefaultPhoto from "../../assets/img/defaultUserImg.png";
 import {NavLink} from "react-router-dom";
 
 const User = ({users, followUser, unFollowUser, followingInProgress, ...props}) => {
-    console.log(users.photos)
     return (
         <div>
             <span>

@@ -4,8 +4,6 @@ import {connect} from "react-redux";
 import {
     followUser,
     requestUsers,
-    setCurrentPage,
-    toggleFollowingInProgress,
     unFollowUser
 } from "../../redux/users-reducer";
 import Preloader from "../Common/Preloader/Preloader";
@@ -18,9 +16,30 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/users-selectors";
+import {UserType} from "../../types/types";
+import {AppStateType} from "../../redux/redux-store";
+import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 
-class UsersContainer extends React.Component {
+type OwnProps = {
+    title: string
+}
+type MapStateToProps = {
+    pageSize: number,
+    currentPage: number,
+    isFetching: boolean,
+    totalUsersCount: number,
+    users: Array<UserType>,
+    followingInProgress: Array<number>,
+}
+type MapDispatchToProps = {
+    followUser: (userId: number) => void,
+    unFollowUser: (userId: number) => void,
+    getUsers: (pageNumber: number, pageSize: number) => void,
+}
+type PropsType = OwnProps & MapDispatchToProps & MapStateToProps
+
+class UsersContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         console.log(this.props)
@@ -28,7 +47,7 @@ class UsersContainer extends React.Component {
         this.props.getUsers(currentPage, pageSize)
     }
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber: number) => {
         const {pageSize} = this.props
         this.props.getUsers(pageNumber, pageSize)
     }
@@ -42,7 +61,6 @@ class UsersContainer extends React.Component {
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
-                   toggleFollowingInProgress={this.props.toggleFollowingInProgress}
                    followingInProgress={this.props.followingInProgress}
                    followUser={this.props.followUser}
                    unFollowUser={this.props.unFollowUser}
@@ -51,12 +69,11 @@ class UsersContainer extends React.Component {
             />
 
         </>
-
     }
 }
 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -68,14 +85,13 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose(
-    connect(mapStateToProps, {
-        setCurrentPage,
-        toggleFollowingInProgress,
-        getUsers: requestUsers, followUser,
+// @ts-ignore
+export default compose<React.Component>(
+    connect<MapStateToProps, MapDispatchToProps, OwnProps, AppStateType>(mapStateToProps, {
+        getUsers: requestUsers,
+        followUser,
         unFollowUser,
-    })
-)(UsersContainer)
+    }))(UsersContainer)
 
 // Как работает compose :мы передаем клас. комп. вторым вызовом ,
 // далее идет цепочка снизу вверх -> WithAuthRedirect(UsersContainer) ->

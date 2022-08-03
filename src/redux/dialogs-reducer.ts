@@ -1,5 +1,14 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
+type DialogsType = {
+    id: number | null,
+    name: string | null,
+    img: string | null
+}
+type MessagesType = {
+    id: number,
+    massage: string
+}
 
 let initialState = {
     dialogsData: [
@@ -23,18 +32,20 @@ let initialState = {
             name: "Pavel",
             img: "https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png"
         }
-    ],
+    ] as Array<DialogsType>,
     massages: [
         {id: 1, massage: "demon hello"},
         {id: 2, massage: "Vlad kak ti"},
         {id: 3, massage: "Sasha i miss you too"},
-    ]
+    ] as Array<MessagesType>
 }
 
-const dialogsReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState
+
+const dialogsReducer = (state = initialState, action: any): InitialStateType => {
 
 
-    switch(action.type) {
+    switch (action.type) {
         case ADD_MESSAGE : {
             let addMessages = {
                 id: 4,
@@ -42,7 +53,7 @@ const dialogsReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                massages : [...state.massages,addMessages],
+                massages: [...state.massages, addMessages],
             }
         }
 
@@ -51,7 +62,13 @@ const dialogsReducer = (state = initialState, action) => {
     }
 
 }
-export const addMessage = (dialogForm) => ({type: ADD_MESSAGE , dialogForm});
+
+type AddMessageActionType = {
+    type: typeof ADD_MESSAGE,
+    dialogForm: string
+}
+
+export const addMessage = (dialogForm: string): AddMessageActionType => ({type: ADD_MESSAGE, dialogForm});
 
 
 export default dialogsReducer

@@ -2,9 +2,19 @@ import React from "react";
 import MyPostContainer from "./MyPost/MyPostContainer";
 import ProfilePage from "./ProfilePage";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import {ProfileType} from "../../types/types";
 
 
-const Profile = ({profile,status,updateStatus ,savePhoto, isOwner , saveProfile}) => {
+type PropsType = {
+    profile : ProfileType | null ,
+    status : string | null,
+    updateStatus :  (status: string) => void,
+    savePhoto : (file : HTMLImageElement) => void,
+    isOwner : boolean,
+    saveProfile : (profile : ProfileType) => void
+}
+
+const Profile : React.FC<PropsType> = ({profile,status,updateStatus ,savePhoto, isOwner , saveProfile}) => {
     return (
         <>
             <div>
@@ -17,4 +27,4 @@ const Profile = ({profile,status,updateStatus ,savePhoto, isOwner , saveProfile}
 
 };
 
-export default Profile;
+export default Profile

@@ -1,4 +1,11 @@
 
+
+type BestFriends = {
+    id : number,
+    name : string,
+    img : string
+}
+
 let initialState = {
     bestFriends: [
         {
@@ -17,10 +24,11 @@ let initialState = {
             img: "https://cdn4.iconfinder.com/data/icons/symbols-vol-1-1/40/user-person-single-id-account-player-male-female-512.png"
         },
 
-    ],
+    ] as Array<BestFriends>,
 }
+type InitialState = typeof initialState
 
-const sideBarReducer = (state=initialState , action ) => {
+const sideBarReducer = (state=initialState , action : any ) : InitialState => {
     return state
 }
 export default sideBarReducer

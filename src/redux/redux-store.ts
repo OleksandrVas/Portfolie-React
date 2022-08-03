@@ -21,12 +21,15 @@ let reducers = combineReducers({
 
 })
 
+type RootReducersType = typeof reducers // создаем корнеовй редюсер
+export type AppStateType = ReturnType<RootReducersType> // дальше возвращаем эти редюсеры
+// @ts-ignore
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleWare)
 ));
-//
-// let store = createStore(reducers , applyMiddleware(thunkMiddleWare)) ;
 
+// @ts-ignore
 window.store_ = store ;
 
 
