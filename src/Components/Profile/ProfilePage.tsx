@@ -4,9 +4,22 @@ import classes from "./Profile.module.css";
 import ProfileData from "./ProfileData";
 import ProfilePhotoData from "./ProfilePhotoData";
 import ProfileDataFormReduxForm from "./ProfileDataForm";
+import {ProfileType} from "../../types/types";
 
-const ProfilePage = ({profile, status, isOwner, savePhoto , saveProfile}) => {
+
+type PropsType = {
+    profile: ProfileType | null,
+    status: string | null,
+    isOwner: boolean,
+    savePhoto: (file: HTMLImageElement) => void,
+    saveProfile: (profile: ProfileType) => void
+}
+
+const ProfilePage: React.FC<PropsType> = ({profile, status, isOwner, savePhoto, saveProfile}) => {
     const [editMode, setEditMode] = useState(false)
+    const goToEditMode = () => {
+        setEditMode(true)
+    }
 
     if (!profile) {
         return (
@@ -17,10 +30,12 @@ const ProfilePage = ({profile, status, isOwner, savePhoto , saveProfile}) => {
             </>
         )
     }
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: ProfileType) => {
         saveProfile(formData);
-        setEditMode(false )
+        setEditMode(false)
+
     }
+
     return (
         <>
             <div className={classes.contentLogo}>
@@ -28,13 +43,12 @@ const ProfilePage = ({profile, status, isOwner, savePhoto , saveProfile}) => {
 
 
                 {editMode ? <ProfileDataFormReduxForm initialValues={profile}
+                        // @ts-ignore
                                                       onSubmit={onSubmit}
                                                       status={status} profile={profile}/>
                     : <ProfileData profile={profile} status={status}
                                    isOwner={isOwner}
-                                   gotToEditMode={() => {
-                                       setEditMode(true)
-                                   }}/>
+                                   gotToEditMode={goToEditMode}/>
                 }
 
                 {/*<ProfileData profile={profile} status={status}/>*/}

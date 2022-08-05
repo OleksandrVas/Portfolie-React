@@ -19,7 +19,7 @@ let initialState = {
 export type InitialStateType = typeof initialState
 
 
-const friendsReducer = (state = initialState, action : any) : InitialStateType => {
+const friendsReducer = (state = initialState, action : ActionsTypes) : InitialStateType => {
     switch (action.type) {
         case ADD_FRIEND_MESSAGE : {
             let newFriendMessage = {
@@ -37,6 +37,10 @@ const friendsReducer = (state = initialState, action : any) : InitialStateType =
     }
     return state
 }
+
+
+
+type ActionsTypes = AddFriendsMessageActionTye
 
 type AddFriendsMessageActionTye = {
     type : typeof ADD_FRIEND_MESSAGE,

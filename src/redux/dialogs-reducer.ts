@@ -42,7 +42,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
 
     switch (action.type) {
@@ -63,10 +63,13 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
 
 }
 
+type ActionsTypes = AddMessageActionType
+
 type AddMessageActionType = {
     type: typeof ADD_MESSAGE,
     dialogForm: string
 }
+
 
 export const addMessage = (dialogForm: string): AddMessageActionType => ({type: ADD_MESSAGE, dialogForm});
 
