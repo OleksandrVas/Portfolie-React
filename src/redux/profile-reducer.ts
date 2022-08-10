@@ -1,4 +1,4 @@
-import {profileApi} from "../api/api";
+import {profileApi, ResultCodesEnum} from "../api/api";
 import {NameOfUserType, PhotoType, PostDataType, ProfileType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./redux-store";
@@ -112,29 +112,29 @@ export const savePhotoSuccess = (photos: PhotoType): SavePhotoSuccessActionType 
 
 
 export const getUsers = (userId: number) : ThunkActionsTypes => async (dispatch) => { // вернет промис
-    const response = await profileApi.getUserPage(userId)  // а дальше будет ждать пока выполниться //
-    dispatch(setUserProfile(response.data))
+    const getUserProfile = await profileApi.getUserPage(userId)  // а дальше будет ждать пока выполниться //
+    dispatch(setUserProfile(getUserProfile))
 }
 export const getStatus = (userId: number) : ThunkActionsTypes => async (dispatch) => {
-    const response = await profileApi.getUserStatus(userId)
-    dispatch(setStatus(response.data))
+    const getUserData = await profileApi.getUserStatus(userId)
+    dispatch(setStatus(getUserData))
 
 
 }
 export const updateStatus = (status: string) : ThunkActionsTypes => async (dispatch ) => {
     try {
-        const response = await profileApi.updateStatus(status)
-        if (response.data.resultCode === 0) {
+        const updateUserData = await profileApi.updateStatus(status)
+        if (updateUserData.resultCode === ResultCodesEnum.Success) {
             dispatch(setStatus(status))
         }
     } catch (error) {
         //
     }
 }
-export const savePhoto = (file: HTMLImageElement) : ThunkActionsTypes => async (dispatch) => {
-    const response = await profileApi.savePhoto(file)
-    if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos))
+export const savePhoto = (file: any) : ThunkActionsTypes => async (dispatch) => {
+    const savePhotoData = await profileApi.savePhoto(file)
+    if (savePhotoData.resultCode === ResultCodesEnum.Success) {
+        dispatch(savePhotoSuccess(savePhotoData.data))
     }
 }
 export const saveProfile = (profile: ProfileType) : ThunkActionsTypes => async (dispatch, getState) => {
