@@ -1,10 +1,7 @@
 import {authAPI, ResultCodeForCaptcha, ResultCodesEnum, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
-import {AppStateType} from "./redux-store";
-
-let SET_USER_DATA = "auth/SET_USER_DATA"
-let SET_CAPTCHA_URL_SUCCESS = "auth/SET_CAPTCHA_URL_SUCCESS"
+import {AppStateType, InferActionsTypes} from "./redux-store";
 
 
 let initialState = {
@@ -19,8 +16,8 @@ export type InitialStateType = typeof initialState
 
 const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case SET_USER_DATA:
-        case  SET_CAPTCHA_URL_SUCCESS : {
+        case "SET_USER_DATA":
+        case  "SET_CAPTCHA_URL_SUCCESS" : {
             return {
                 ...state,
                 userId: 12,
@@ -33,46 +30,29 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
     }
 }
 
-type ActionsTypes = SetAuthUserDataType | GetCaptchaUrlSuccessType
+type ActionsTypes = InferActionsTypes<typeof actions>
 
-
-type setAuthUserDataPayloadType = {
-    userId: number | null
-    login: string | null
-    email: string | null
-    isAuth: boolean
+export const actions = {
+    setAuthUserData: (userId: number | null, login: string | null, email: string | null, isAuth: boolean) => ({
+        type: "SET_USER_DATA",
+        payload: {userId, login, email, isAuth}
+    } as const),
+    getCaptchaUrlSuccess: (captchaUrl: string) => ({
+        type: "SET_CAPTCHA_URL_SUCCESS",
+        payload: {captchaUrl}
+    } as const)
 
 }
-type SetAuthUserDataType = {
-    type: typeof SET_USER_DATA
-    payload: setAuthUserDataPayloadType
-}
-
-export const setAuthUserData = (userId: number | null, login: string | null, email: string | null, isAuth: boolean): SetAuthUserDataType => ({
-    type: SET_USER_DATA,
-    payload: {userId, login, email, isAuth}
-})
-
-
-type GetCaptchaUrlSuccessType = {
-    type: typeof SET_CAPTCHA_URL_SUCCESS
-    payload: { captchaUrl: string }
-}
-
-export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessType => ({
-    type: SET_CAPTCHA_URL_SUCCESS,
-    payload: {captchaUrl}
-})
 
 
 type ThunkActionType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
-export const setUsers = () : ThunkActionType => async (dispatch) => {
+export const setUsers = (): ThunkActionType => async (dispatch) => {
     const meData = await authAPI.me();
 
-    if (meData.resultCode === ResultCodesEnum.Success  ) {
+    if (meData.resultCode === ResultCodesEnum.Success) {
         const {id, login, email} = meData.data;
-        dispatch(setAuthUserData(id, login, email, true))
+        dispatch(actions.setAuthUserData(id, login, email, true))
     }
 }
 
@@ -94,13 +74,13 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 export const logout = (): ThunkActionType => async (dispatch) => {
     const deleteData = await authAPI.logout();
     if (deleteData.resultCode === ResultCodesEnum.Success) {
-        dispatch(setAuthUserData(null, null, null, false))
+        dispatch(actions.setAuthUserData(null, null, null, false))
     }
 }
 export const getCaptcha = (): ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes> => async (dispatch) => {
     const getCaptcha = await securityAPI.getCaptchaUrl();
     const captcha = getCaptcha.url;
-    dispatch(getCaptchaUrlSuccess(captcha))
+    dispatch(actions.getCaptchaUrlSuccess(captcha))
 }
 
 export default authReducer

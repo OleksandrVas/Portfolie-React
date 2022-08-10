@@ -1,9 +1,10 @@
-const ADD_FRIEND_MESSAGE = 'ADD-FRIEND-MESSAGE'
+import {InferActionsTypes} from "./redux-store";
+
 
 type MessagesType = {
-    id : number,
-    name : string,
-    text : string
+    id: number,
+    name: string,
+    text: string
 }
 
 let initialState = {
@@ -19,9 +20,9 @@ let initialState = {
 export type InitialStateType = typeof initialState
 
 
-const friendsReducer = (state = initialState, action : ActionsTypes) : InitialStateType => {
+const friendsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_FRIEND_MESSAGE : {
+        case "ADD_FRIEND_MESSAGE" : {
             let newFriendMessage = {
                 id: 3,
                 name: "Vlad",
@@ -29,7 +30,7 @@ const friendsReducer = (state = initialState, action : ActionsTypes) : InitialSt
             };
             return {
                 ...state,
-                messages : [...state.messages , newFriendMessage]
+                messages: [...state.messages, newFriendMessage]
             }
         }
         default :
@@ -39,15 +40,11 @@ const friendsReducer = (state = initialState, action : ActionsTypes) : InitialSt
 }
 
 
+type ActionsTypes = InferActionsTypes<typeof actions>
 
-type ActionsTypes = AddFriendsMessageActionTye
-
-type AddFriendsMessageActionTye = {
-    type : typeof ADD_FRIEND_MESSAGE,
-    newFriendsMessageText : string
+const actions = {
+    addFriendsMessage: (newFriendsMessageText: string) => ({type: "ADD_FRIEND_MESSAGE", newFriendsMessageText})
 }
-
-export const addFriendsMessage = (newFriendsMessageText : string)  : AddFriendsMessageActionTye=> ({type: ADD_FRIEND_MESSAGE ,newFriendsMessageText});
 
 
 export default friendsReducer
