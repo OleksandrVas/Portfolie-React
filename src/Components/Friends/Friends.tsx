@@ -15,24 +15,32 @@ type MessagesType = {
     name: string,
     text: string
 }
+type OwnProps = {
+    messages : Array<MessagesType>
+}
+type PropsType = OwnProps
 
-const Friends = (props: { addFriendsMessage: (values: () => void) => void, state: { friendsMessages: { messages: Array<MessagesType> } } }) => {
-    const onPostSend = (values: { newFriendsMessageText: () => string; }) => {
-        props.addFriendsMessage(values.newFriendsMessageText)
+const Friends : React.FC<PropsType> = (messages) => {
+
+    if (messages instanceof  Array) {
+        let newFriendsMessages = messages.map((user: UserType) => <FriendsMessages id={user.id}
+                                                                                   name={user.name} text={user.text} key={user.id}/>);
+        return (
+            <>
+                <div>
+                    {newFriendsMessages}
+                    <AddFriendsMessageRedux />
+                </div>
+            </>
+        )
     }
-    let newFriendsMessages =
-        props.state.friendsMessages.messages
-            .map((user: UserType) => <FriendsMessages id={user.id}
-                                                      name={user.name} text={user.text}
-                                                      key={user.id}/>);
-    return (
-        <>
-            <div>
-                {newFriendsMessages}
-                <AddFriendsMessageRedux />
-            </div>
-        </>
+    return  (
+        <div>
+            Probably have a problem
+        </div>
     )
+
+
 }
 const AddFriendsMessage = () => {
     return (

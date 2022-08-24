@@ -1,4 +1,4 @@
-import {InferActionsTypes} from "./redux-store";
+import {BaseThunkType, InferActionsTypes} from "./redux-store";
 
 
 type DialogsType = {
@@ -6,7 +6,7 @@ type DialogsType = {
     name: string | null,
     img: string | null
 }
-type MessagesType = {
+export type MessagesType = {
     id: number,
     massage: string
 }
@@ -47,7 +47,7 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
 
 
     switch (action.type) {
-        case "ADD_MESSAGE" : {
+        case "IT/DIALOGS/ADD_MESSAGE" : {
             let addMessages = {
                 id: 4,
                 massage: action.dialogForm
@@ -65,9 +65,10 @@ const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStat
 }
 
 type ActionsTypes = InferActionsTypes<typeof actions>
+type ThunkActionsType = BaseThunkType<ActionsTypes> // For Thunk dude
 
 export const actions = {
-    addMessage: (dialogForm: string) => ({type: "ADD_MESSAGE", dialogForm} as const)
+    addMessage: (dialogForm: string) => ({type: "IT/DIALOGS/ADD_MESSAGE", dialogForm} as const),
 }
 
 

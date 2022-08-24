@@ -1,9 +1,10 @@
+import {BaseThunkType, InferActionsTypes} from "./redux-store";
 
 
 type BestFriends = {
-    id : number,
-    name : string,
-    img : string
+    id: number,
+    name: string,
+    img: string
 }
 
 let initialState = {
@@ -28,10 +29,16 @@ let initialState = {
 }
 type InitialState = typeof initialState
 
-const sideBarReducer = (state=initialState , action : ActionsTypes ) : InitialState => {
+
+const sideBarReducer = (state = initialState, action: ActionsTypes): InitialState => {
     return state
 }
+type ActionsTypes = InferActionsTypes<typeof actions>
+type ThunkActionsType = BaseThunkType<ActionsTypes>
 
-type ActionsTypes = Any
-type Any = {}
+const actions = {
+volume : () => ({type  : "Lol"})
+}
+
+
 export default sideBarReducer

@@ -1,11 +1,11 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import classes from "./Profile.module.css";
 import defaultImg from "../../assets/img/defaultUserImg.png";
 
-const ProfilePhotoData = ({profilePhotoSize, savePhoto, isOwner}) => {
+const ProfilePhotoData : React.FC<PropsType> = ({profilePhotoSize, savePhoto, isOwner}) => {
     const src = profilePhotoSize;
-    const onMainPhotoSelected = (e) => {
-        if (e.target.files.length) {
+    const onMainPhotoSelected = (e : ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
             savePhoto(e.target.files[0])
         }
     }
@@ -19,3 +19,10 @@ const ProfilePhotoData = ({profilePhotoSize, savePhoto, isOwner}) => {
 }
 
 export default ProfilePhotoData
+
+
+type PropsType = {
+    profilePhotoSize : string,
+    savePhoto : (targetFiles : File) => void,
+    isOwner : boolean
+}

@@ -1,11 +1,20 @@
 import React from "react";
-import {addMessage} from "../../../redux/dialogs-reducer";
 import DialogMassages from "./DialogMassages";
+import {actions, InitialStateType, MessagesType} from "../../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import {WithAuthRedirect} from "../../../HOC/WithAuthRedirect";
 import {compose} from "redux";
+import {AppStateType} from "../../../redux/redux-store";
 
+type MapStateToProps = {
+    dialogPage : InitialStateType
+}
+type MapDispatchToProps = {
 
+}
+type OwnProps = {
+    addMessage : () =>void
+}
 
 // let mapDispatchToProps = (dispatch) => {
 //     return {
@@ -18,15 +27,17 @@ import {compose} from "redux";
 //         }
 //     }
 //
-// }
-let mapStateToProps = (state) => {
+// }w
+
+
+let mapStateToProps = (state : AppStateType) => {
     return {
-        state: state,
+        dialogPage: state.dialogPage
     }
 };
 
 
 export default compose(
-    connect(mapStateToProps, {addMessage}),
+    connect<MapStateToProps , MapDispatchToProps  , OwnProps , AppStateType>(mapStateToProps, {addMessage : actions.addMessage}),
     WithAuthRedirect
 )(DialogMassages)

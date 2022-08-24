@@ -4,15 +4,19 @@ import classes from "./Nav.module.css"
 import BestFriends from "./BestFriends";
 import NavBarLink from "./NavBarLink";
 
-const Nav = (props) => {
-    let bestFriend =
-        props.state.bestFriends
-            .map(user => <BestFriends
-                name={user.name}
-                img={user.img}
-                key={user.id}
+type PropsType = {
 
-            />)
+}
+
+const Nav : React.FC<PropsType> = (props) => {
+    // let bestFriend =
+    //     props.state.bestFriends
+    //         .map(user => <BestFriends
+    //             name={user.name}
+    //             img={user.img}
+    //             key={user.id}
+    //
+    //         />)
     return (
         <>
             <nav className={classes.nav}>
@@ -23,7 +27,7 @@ const Nav = (props) => {
                 <NavBarLink to={"/music"} text={"Music"}/>
                 <NavBarLink to={"/settings"} text={"Settings"}/>
                 <NavBarLink to={"/friends"} text={"Friends"}/>
-                <div className={classes.icon}>{bestFriend}</div>
+                {/*<div className={classes.icon}>{bestFriend}</div>*/}
             </nav>
         </>
     );

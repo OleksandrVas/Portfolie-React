@@ -37,13 +37,12 @@ type MapDispatchToProps = {
     unFollowUser: (userId: number) => void,
     getUsers: (pageNumber: number, pageSize: number) => void,
 }
-type PropsType = OwnProps & MapDispatchToProps & MapStateToProps
-
-class UsersContainer extends React.Component<PropsType> {
+type PropsType = MapDispatchToProps & MapStateToProps
+// IntrinsicAttributes
+class UsersContainer extends React.Component<PropsType > {
 
     componentDidMount() {
-        console.log(this.props)
-        const {currentPage, pageSize} = this.props
+        const {currentPage, pageSize } = this.props
         this.props.getUsers(currentPage, pageSize)
     }
 
@@ -86,12 +85,12 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
 }
 
 // @ts-ignore
-export default compose<React.Component>(
+export default compose(
     connect<MapStateToProps, MapDispatchToProps, OwnProps, AppStateType>(mapStateToProps, {
         getUsers: requestUsers,
         followUser,
         unFollowUser,
-    }))(UsersContainer)
+    }))(UsersContainer) as React.ComponentType
 
 // Как работает compose :мы передаем клас. комп. вторым вызовом ,
 // далее идет цепочка снизу вверх -> WithAuthRedirect(UsersContainer) ->

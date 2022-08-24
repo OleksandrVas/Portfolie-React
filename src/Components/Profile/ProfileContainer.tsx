@@ -3,33 +3,11 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getStatus, getUsers, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
 import {compose} from "redux";
-import {RouteProps, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import {ProfileType} from "../../types/types";
-import {match} from "assert";
+import {PostDataType, ProfileType} from "../../types/types";
 
-
-type MapStateToProps = {
-    authorisedUserId: number | null,
-    profile: ProfileType | null
-    status: string | null
-
-}
-type StateProps = {}
-
-type MapDispatchToProps = {
-    updateStatus: (status: string) => void,
-    saveProfile: (profile: ProfileType) => void,
-    savePhoto: (file: HTMLImageElement) => void,
-    getUsers: (userId: number) => void,
-    getStatus: (userId: number) => void,
-}
-type OwnProps = {
-    color: string
-}
-type PropsType = MapStateToProps & MapDispatchToProps & OwnProps
-
-class ProfileContainer extends React.Component<PropsType, StateProps> {
+class ProfileContainer extends React.Component<PropsType> {
 
 
     refreshProfile = () => {
@@ -63,6 +41,7 @@ class ProfileContainer extends React.Component<PropsType, StateProps> {
             <>
                 <Profile saveProfile={this.props.saveProfile}
                          savePhoto={this.props.savePhoto}
+                         postData = {this.props.postData}
                     // @ts-ignore
                          isOwner={!this.props.match.params.userId}
                          profile={this.props.profile}
@@ -79,11 +58,12 @@ let mapStateToProps = (state: AppStateType) => {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorisedUserId: state.auth.userId,
+        postData : state.profilePage.postData
     }
 
 }
 
-export default compose(
+export default compose<React.ComponentType>(
     connect<MapStateToProps, MapDispatchToProps, OwnProps, AppStateType>(mapStateToProps, {
         getUsers,
         getStatus,
@@ -94,6 +74,29 @@ export default compose(
     withRouter,
     // WithAuthRedirect
 )(ProfileContainer)
+
+
+
+type MapStateToProps = {
+    authorisedUserId: number | null,
+    profile: ProfileType | null
+    status: string | null
+    postData : Array<PostDataType>
+
+}
+type StateProps = {}
+
+type MapDispatchToProps = {
+    updateStatus: (status: string) => void,
+    saveProfile: (profile: ProfileType ) => void,
+    savePhoto: (file: HTMLImageElement) => void,
+    getUsers: (userId: number) => void,
+    getStatus: (userId: number) => void,
+}
+type OwnProps = {
+    color: string
+}
+type PropsType = OwnProps & MapStateToProps & MapDispatchToProps
 
 
 

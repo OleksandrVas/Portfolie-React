@@ -1,12 +1,15 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import classes from "./DialogsMassages.module.css";
 
-const Message = (props) => {
+type PropsType = {
+    messages : ReactNode
+}
+const Message : React.FC<PropsType> = ({messages}) => {
 
     return (
         <>
             <div className={classes.massage}>
-                <div >{props.message}</div>
+                <div>{messages}</div>
             </div>
         </>
 

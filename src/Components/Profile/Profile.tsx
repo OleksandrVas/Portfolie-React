@@ -2,7 +2,7 @@ import React from "react";
 import MyPostContainer from "./MyPost/MyPostContainer";
 import ProfilePage from "./ProfilePage";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
-import {ProfileType} from "../../types/types";
+import {PostDataType, ProfileType} from "../../types/types";
 
 
 type PropsType = {
@@ -11,16 +11,17 @@ type PropsType = {
     updateStatus :  (status: string) => void,
     savePhoto : (file : HTMLImageElement) => void,
     isOwner : boolean,
-    saveProfile : (profile : ProfileType) => void
+    saveProfile : (profile : ProfileType) => void ,
+    postData : Array<PostDataType>
 }
 
-const Profile : React.FC<PropsType> = ({profile,status,updateStatus ,savePhoto, isOwner , saveProfile}) => {
+const Profile : React.FC<PropsType> = ({profile,status,updateStatus ,savePhoto, isOwner , saveProfile , postData}) => {
     return (
         <>
             <div>
                 <ProfilePage isOwner={isOwner} savePhoto={savePhoto} profile={profile} status={status} saveProfile={saveProfile}/>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-                <MyPostContainer/>
+                <MyPostContainer postData={postData} />
             </div>
         </>
     );

@@ -2,12 +2,16 @@ import React from "react";
 import classes from "../MyPost/MyPost.module.css";
 import ProfilePost from "../Posts";
 import PostFormSubmit from "./MyPostForm";
+import {PostDataType} from "../../../types/types";
 
 
+type PropsType = {
+    addPost : (postYourMessage : string) => void ,
+    postData : Array<PostDataType>
+}
 
 
-
-const MyPosts = (props) => {
+const MyPosts: React.FC<PropsType> = (props) => {
     return (
         <>
             <div className={classes.content}>

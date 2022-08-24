@@ -1,6 +1,12 @@
 import React from "react";
 import classes from "./Nav.module.css";
-const BestFriends = ({img,name}) => {
+
+
+type PropsType = {
+    img : string ,
+    name : string
+}
+const BestFriends : React.FC<PropsType> = ({img,name}) => {
 
     return (
         <>

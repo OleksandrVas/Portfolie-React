@@ -1,4 +1,4 @@
-import {InferActionsTypes} from "./redux-store";
+import {BaseThunkType, InferActionsTypes} from "./redux-store";
 
 
 type MessagesType = {
@@ -22,7 +22,7 @@ export type InitialStateType = typeof initialState
 
 const friendsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case "ADD_FRIEND_MESSAGE" : {
+        case "IT/FRIENDS/ADD_FRIEND_MESSAGE" : {
             let newFriendMessage = {
                 id: 3,
                 name: "Vlad",
@@ -41,9 +41,10 @@ const friendsReducer = (state = initialState, action: ActionsTypes): InitialStat
 
 
 type ActionsTypes = InferActionsTypes<typeof actions>
+type ThunkActionsType = BaseThunkType<ActionsTypes>
 
-const actions = {
-    addFriendsMessage: (newFriendsMessageText: string) => ({type: "ADD_FRIEND_MESSAGE", newFriendsMessageText})
+export const actions = {
+    addFriendsMessage: (newFriendsMessageText: string) => ({type: "IT/FRIENDS/ADD_FRIEND_MESSAGE", newFriendsMessageText} as const )
 }
 
 

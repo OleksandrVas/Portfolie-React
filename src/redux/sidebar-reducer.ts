@@ -6,7 +6,6 @@ const sidebarReducer = (state = initialState, action: ActionsType): InitialState
     return state
 }
 type ActionsType = Any
-type Any = {
+type Any = {}
 
-}
 export default sidebarReducer

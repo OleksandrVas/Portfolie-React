@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Profile.module.css";
 
-const ProfileContentLogo = (props) => {
+const ProfileContentLogo : React.FC<PropsType> = (props) => {
     return (
         <>
             <div className={classes.contentLogo}>
@@ -20,3 +20,8 @@ const ProfileContentLogo = (props) => {
 
 
 export default ProfileContentLogo;
+
+type PropsType = {
+    fullName : string ,
+    lookingForAJob : string
+}
