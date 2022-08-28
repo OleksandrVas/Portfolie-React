@@ -1,10 +1,11 @@
 import {GetItemsType, instance, ResponseDataType, ResultCodesEnum} from "./api";
 
 
-type FollowUnfollowResponseDataType = {
-    userId: number
+export type FollowUnfollowResponseDataType = {
+    userId: number,
+    resultCode: ResultCodesEnum,
+    data: {}
 }
-
 
 
 export const usersApi = {
@@ -16,13 +17,13 @@ export const usersApi = {
     },
     unfollow(id = 1) {
         return (
-            instance.post<ResponseDataType<FollowUnfollowResponseDataType>>(`/follow/${id}`)
-                .then(response => response.data.data)
+            instance.post<any>(`/unfollow/${id}`)
+                .then(response => response.data)
         )
     },
     follow(id = 1) {
         return (
-            instance.delete<ResponseDataType<FollowUnfollowResponseDataType>>(`/follow/${id}`)
+            instance.delete<any>(`/follow/${id}`)
                 .then(response => response.data)
         )
     },

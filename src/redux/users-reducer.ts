@@ -3,8 +3,8 @@ import {PhotoType, UserType} from "../types/types";
 import {AppStateType, BaseThunkType, InferActionsTypes} from "./redux-store";
 import {Dispatch} from "redux";
 import {ThunkAction} from "redux-thunk";
-import {usersApi} from "../api/usersApi";
-
+import {FollowUnfollowResponseDataType, usersApi} from "../api/usersApi";
+import {ResponseDataType} from "../api/api";
 
 
 let initialState = {
@@ -17,7 +17,7 @@ let initialState = {
 }
 
 export type InitialState = typeof initialState
-const userReducer = (state = initialState, action: ActionsTypes): InitialState => {
+export const userReducer = (state = initialState, action: ActionsTypes): InitialState => {
     switch (action.type) {
         case "IT/USERS/FOLLOW" :
             return {
@@ -108,18 +108,24 @@ export const requestUsers = (page: number, pageSize: number): ThunkActionsType =
 }
 
 
-const followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, actionCreator: (userId: number) => ActionsTypes) => {
+const followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: (userId : number) => Promise<FollowUnfollowResponseDataType>, actionCreator: (userId: number) => ActionsTypes) => {
     dispatch(actions.toggleFollowingInProgress(true, userId))
-    const response = await apiMethod(userId);
-    if (response.data.resultCode === 1) {
+
+
+    let response = await apiMethod(userId);
+
+    if (response == null) {//problem with api ?
         dispatch(actionCreator(userId))
     }
+
     dispatch(actions.toggleFollowingInProgress(false, userId))
 }
 
 
-export const followUser = (userId: number): ThunkActionsType => async (dispatch) => {
-    await followUnfollowFlow(dispatch, userId, usersApi.follow.bind(usersApi), actions.unFollow)
+export const followUser = (userId: number): ThunkActionsType => {
+    return async (dispatch) => {
+        await followUnfollowFlow(dispatch, userId, usersApi.follow.bind(usersApi), actions.unFollow)
+    }
 }
 
 

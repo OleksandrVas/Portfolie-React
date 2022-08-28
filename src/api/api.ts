@@ -2,7 +2,7 @@ import axios from "axios";
 import {PhotoType, ProfileType, UserType} from "../types/types";
 
 
-export const instance = axios.create({
+export const  instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0",
     headers: {
@@ -18,7 +18,8 @@ export type GetItemsType = {
 export type ResponseDataType<D = {}, RC = ResultCodesEnum> = {
     data: D,
     messages: Array<string>,
-    resultCode: RC
+    resultCode: RC,
+    userId ?: number
 }
 
 export enum ResultCodesEnum {
