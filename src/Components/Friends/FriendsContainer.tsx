@@ -1,15 +1,14 @@
 import React from "react";
 import Friends from "./Friends";
-import {connect} from "react-redux";
-import {actions} from "../../redux/friends-reducer";
-import {AppStateType} from "../../redux/redux-store";
-import {MessagesType} from "../../redux/dialogs-reducer";
+import { connect } from "react-redux";
+import { actions } from "../../redux/friends-reducer";
+import { AppStateType } from "../../redux/redux-store";
 
-let mapStateToProps = (state : AppStateType) => {
-    return {
-        messages : state.friendsMessages.messages
-    }
-}
+let mapStateToProps = (state: AppStateType) => {
+  return {
+    messages: state.friendsMessages.messages,
+  };
+};
 
 // let mapDispatchToProps = (dispatch) => {
 //     return {
@@ -23,18 +22,18 @@ let mapStateToProps = (state : AppStateType) => {
 //     }
 // }
 
+const FriendsContainerContainer = connect<
+  MapStToProps,
+  MapDispatchToProps,
+  OwnProps,
+  AppStateType
+>(
+  mapStateToProps,
+  actions.addFriendsMessage
+)(Friends);
 
-const FriendsContainerContainer = connect<MapStToProps ,MapDispatchToProps , OwnProps , AppStateType >(mapStateToProps, actions.addFriendsMessage)(Friends)
+export default FriendsContainerContainer;
 
-
-export default FriendsContainerContainer
-
-
-
-type MapStToProps = ReturnType<typeof  mapStateToProps>
-type MapDispatchToProps  = {
-
-}
-type OwnProps  = {
-
-}
+type MapStToProps = ReturnType<typeof mapStateToProps>;
+type MapDispatchToProps = {};
+type OwnProps = {};

@@ -1,14 +1,15 @@
 .app-wrapper {
-  display: flex;
-  max-width: 1200px;
-  flex-wrap: wrap;
-  margin-right: 100px;
-  margin-left: 100px;
+    display: flex;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    margin-right: 100px;
+    margin-left: 100px;
 }
+
 .app-wrapper-content {
-  flex-wrap: wrap;
-  width: 85%;
-  margin-top: 10px;
-  background-color: #97d2e7;
+    flex-wrap: wrap;
+    width: 85%;
+    margin-top: 10px;
+    background-color: #97d2e7;
 }
 

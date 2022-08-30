@@ -1,94 +1,99 @@
 import React from "react";
-import {Field, InjectedFormProps, reduxForm} from 'redux-form'
-import {createField, Input} from "../Common/FormsControl/FormsControl";
-import {maxLengthCreator, required} from "../../utils/validators/validator";
-import {connect} from "react-redux";
-import {login} from "../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
-import classes from "../Common/FormsControl/FormControl.module.css"
-import {AppStateType} from "../../redux/redux-store";
+import { InjectedFormProps, reduxForm } from "redux-form";
+import { createField, Input } from "../Common/FormsControl/FormsControl";
+import { required } from "../../utils/validators/validator";
+import { useSelector } from "react-redux";
+import { login } from "../../redux/auth-reducer";
+import { Redirect } from "react-router-dom";
+import classes from "../Common/FormsControl/FormControl.module.css";
+import { getCaptchaUrl, getIsAuth } from "../../redux/users-selectors";
 
-
-const maxLength30 = maxLengthCreator(30)
-const maxLength15 = maxLengthCreator(15)
-
-
-const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPropsType> & LoginFormOwnPropsType> =
-    ({handleSubmit, error, captchaUrl}) => {
-
-        return (
-            <form onSubmit={handleSubmit}>
-                {createField<LoginFromValuesKeysType>("Email", "email", [required], Input)}
-                {createField<LoginFromValuesKeysType>("Password", "password", [required], Input, {type: "password"})}
-                {createField<LoginFromValuesKeysType>(undefined, "rememberMe", [], Input, {type: "checkbox"}, "remember me ")}
-                {captchaUrl &&
-                <div>
-                    <img src={captchaUrl}/>
-                </div>
-                }
-                {captchaUrl &&
-                createField<LoginFromValuesKeysType>("Captcha", "captcha", [required], Input,)
-                }
-                {error &&
-                <div className={classes.formSummaryError}>
-                    {error}
-                </div>}
-                <div>
-                    <button>Login</button>
-                </div>
-            </form>
-        )
-    }
+const LoginForm: React.FC<
+  InjectedFormProps<LoginFormValuesType, LoginFormOwnPropsType> &
+    LoginFormOwnPropsType
+> = ({ handleSubmit, error, captchaUrl }) => {
+  return (
+    <form onSubmit={handleSubmit}>
+      {createField<LoginFromValuesKeysType>(
+        "Email",
+        "email",
+        [required],
+        Input
+      )}
+      {createField<LoginFromValuesKeysType>(
+        "Password",
+        "password",
+        [required],
+        Input,
+        { type: "password" }
+      )}
+      {createField<LoginFromValuesKeysType>(
+        undefined,
+        "rememberMe",
+        [],
+        Input,
+        { type: "checkbox" },
+        "remember me "
+      )}
+      {captchaUrl && (
+        <div>
+          <img src={captchaUrl} />
+        </div>
+      )}
+      {captchaUrl &&
+        createField<LoginFromValuesKeysType>(
+          "Captcha",
+          "captcha",
+          [required],
+          Input
+        )}
+      {error && <div className={classes.formSummaryError}>{error}</div>}
+      <div>
+        <button>Login</button>
+      </div>
+    </form>
+  );
+};
 
 const ContactForm = reduxForm<LoginFormValuesType, LoginFormOwnPropsType>({
-    form: 'login'
-})(LoginForm)
+  form: "login",
+})(LoginForm);
 
+export const LoginPage: React.FC<LoginPropsType> = () => {
+  const isAuth = useSelector(getIsAuth);
+  const captchaUrl = useSelector(getCaptchaUrl);
 
-const Login: React.FC<MapStatePropsType & MapDispatchProps> = ({login, isAuth, captchaUrl}) => {
-    const onSubmit = (formData: LoginFormValuesType) => {
-        login(formData.email, formData.password, formData.rememberMe, formData.captcha)
-    }
-    //редирект на /profile
-    if (isAuth) {
-        return <Redirect to={"/profile"}/>
-    }
+  const onSubmit = (formData: LoginFormValuesType) => {
+    login(
+      formData.email,
+      formData.password,
+      formData.rememberMe,
+      formData.captcha
+    );
+  };
+  if (isAuth) {
+    return <Redirect to={"/profile"} />;
+  }
+  return (
+    <>
+      <h1>Login</h1>
+      <ContactForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
+    </>
+  );
+};
 
-    return (
-        <>
-            <h1>Login</h1>
-            <ContactForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
-        </>
-    )
-}
-let mapStateToTheProps = (state: AppStateType): MapStatePropsType => ({
-    captchaUrl: state.auth.captchaUrl,
-    isAuth: state.auth.isAuth
-})
-
-export default connect<MapStatePropsType, MapDispatchProps, LoginFormOwnPropsType, AppStateType>(mapStateToTheProps, {login})(Login)
-
-
-export type LoginFromValuesKeysType = Extract<keyof LoginFormValuesType, string>
-
-
-type MapStatePropsType = {
-    captchaUrl: string | null,
-    isAuth: boolean
-}
-type MapDispatchProps = {
-    login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
-}
-
+type LoginPropsType = {};
 export type LoginFormValuesType = {
-    email: string,
-    password: string,
-    rememberMe: boolean,
-    captcha: string,
-
-}
-
+  email: string;
+  password: string;
+  rememberMe: boolean;
+  captcha: string;
+};
 
 type LoginFormOwnPropsType = {
-    captchaUrl: string | null
-}
+  captchaUrl: string | null;
+};
+export type LoginFromValuesKeysType = Extract<
+  keyof LoginFormValuesType,
+  string
+>;
