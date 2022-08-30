@@ -11,7 +11,8 @@ type PropsType = {
     profile: ProfileType | null,
     status: string | null,
     isOwner: boolean,
-    savePhoto: (file: HTMLImageElement) => void,
+    // (file: HTMLImageElement) => void
+    savePhoto: any,
     saveProfile: (profile: ProfileType) => void
 }
 
@@ -41,8 +42,7 @@ const ProfilePage: React.FC<PropsType> = ({profile, status, isOwner, savePhoto, 
             <div className={classes.contentLogo}>
                 <ProfilePhotoData profilePhotoSize={profile.photos.large} savePhoto={savePhoto} isOwner={isOwner}/>
 
-
-                {editMode ? <ProfileDataFormReduxForm initialValues={profile}
+                {editMode ? <ProfileDataFormReduxForm
                         // @ts-ignore
                                                       onSubmit={onSubmit}
                                                       status={status} profile={profile}/>

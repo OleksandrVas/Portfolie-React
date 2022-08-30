@@ -12,11 +12,13 @@ type PropsType = {
 
 
 const MyPosts: React.FC<PropsType> = (props) => {
+
+    // @ts-ignore
     return (
         <>
             <div className={classes.content}>
                 <div className={classes.contentNamePost}>My Posts</div>
-                <PostFormSubmit addPost={props.addPost}/>
+                {/*<PostFormSubmit addPost={props.addPost}/>*/}
                 <ProfilePost postData={props.postData}/>
             </div>
         </>

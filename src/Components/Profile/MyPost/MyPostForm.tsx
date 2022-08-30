@@ -29,7 +29,7 @@ const PostForm: React.FC<InjectedFormProps<LoginFormValueType, LoginFormOwnProps
 
 
 const PostFormRedux = reduxForm<LoginFormValueType, LoginFormOwnProps>({
-    form: "postForm"
+    form: "postForm",
 })(PostForm)
 
 

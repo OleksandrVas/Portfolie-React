@@ -9,9 +9,9 @@ export type FollowUnfollowResponseDataType = {
 
 
 export const usersApi = {
-    getUsers(currentPage = 1, pageSize = 5) {
+    getUsers(currentPage = 1, pageSize = 5, term = "", friend: null | boolean = null) {
         return (
-            instance.get<GetItemsType>(`/users?page=${currentPage}&count=${pageSize}`, {})
+            instance.get<GetItemsType>(`/users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}` ), {})
                 .then(response => response.data)
         )
     },

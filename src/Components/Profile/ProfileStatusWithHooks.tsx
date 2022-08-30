@@ -1,24 +1,26 @@
 import React, {ChangeEvent, ChangeEventHandler, useEffect, useState} from "react";
 
 
-const ProfileStatusWithHooks : React.FC<PropsType> = (props) => {
+const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
 
     const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
 
 
-    useEffect( () => {
+    useEffect(() => {
         setStatus(props.status)
-    },[props.status])  //в [] идет зависимость от того чего нужно вызывать эту функцию
+    }, [props.status])  //в [] идет зависимость от того чего нужно вызывать эту функцию
 
     const activateMode = () => {
-       setEditMode(true)
+        setEditMode(true)
     }
     const deactivateMode = () => {
-       setEditMode(false);
-       props.updateStatus(status)
+        setEditMode(false);
+        if (status!== null) {
+            props.updateStatus(status)
+        }
     }
-    const onStatusChange = (e : ChangeEvent<HTMLInputElement>) => {
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
 
@@ -31,7 +33,7 @@ const ProfileStatusWithHooks : React.FC<PropsType> = (props) => {
             }
             {editMode &&
             <div>
-                <input onChange={onStatusChange}  onBlur={deactivateMode} autoFocus={true} value={status}/>
+                {status!==null && <input onChange={onStatusChange} onBlur={deactivateMode} autoFocus={true} value={status}/>}
             </div>
             }
 
@@ -42,6 +44,6 @@ const ProfileStatusWithHooks : React.FC<PropsType> = (props) => {
 export default ProfileStatusWithHooks
 
 type PropsType = {
-status : string,
-    updateStatus : (status : string) => void
+    status: string | null,
+    updateStatus: (status: string) => void
 }

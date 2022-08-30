@@ -55,5 +55,5 @@ type ProfileDataFormValueType = {
 }
 
 type OwnProps = {
-    profile :{contacts : string}
+    profile : any
 }
