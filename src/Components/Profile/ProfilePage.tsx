@@ -1,61 +1,72 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Preloader from "../Common/Preloader/Preloader";
 import classes from "./Profile.module.css";
 import ProfileData from "./ProfileData";
 import ProfilePhotoData from "./ProfilePhotoData";
 import ProfileDataFormReduxForm from "./ProfileDataForm";
-import {ProfileType} from "../../types/types";
-
+import { ProfileType } from "../../types/types";
+import { useDispatch } from "react-redux";
 
 type PropsType = {
-    profile: ProfileType | null,
-    status: string | null,
-    isOwner: boolean,
-    // (file: HTMLImageElement) => void
-    savePhoto: any,
-    saveProfile: (profile: ProfileType) => void
-}
+  profile: ProfileType | null;
+  status: string | null;
+  isOwner: boolean;
+  // (file: HTMLImageElement) => void
+};
 
-const ProfilePage: React.FC<PropsType> = ({profile, status, isOwner, savePhoto, saveProfile}) => {
-    const [editMode, setEditMode] = useState(false)
-    const goToEditMode = () => {
-        setEditMode(true)
-    }
+const ProfilePage: React.FC<PropsType> = ({ profile, status, isOwner }) => {
+  const [editMode, setEditMode] = useState(false);
+  const dispatch = useDispatch();
+  const saveProfile = (formData: ProfileType) => {
+    dispatch(saveProfile(formData));
+  };
 
-    if (!profile) {
-        return (
-            <>
-                <div>
-                    <Preloader/>
-                </div>
-            </>
-        )
-    }
-    const onSubmit = (formData: ProfileType) => {
-        saveProfile(formData);
-        setEditMode(false)
+  const goToEditMode = () => {
+    setEditMode(true);
+  };
 
-    }
-
+  if (!profile) {
     return (
-        <>
-            <div className={classes.contentLogo}>
-                <ProfilePhotoData profilePhotoSize={profile.photos.large} savePhoto={savePhoto} isOwner={isOwner}/>
+      <>
+        <div>
+          <Preloader />
+        </div>
+      </>
+    );
+  }
+  const onSubmit = (formData: ProfileType) => {
+    saveProfile(formData);
+    setEditMode(false);
+  };
 
-                {editMode ? <ProfileDataFormReduxForm
-                        // @ts-ignore
-                                                      onSubmit={onSubmit}
-                                                      status={status} profile={profile}/>
-                    : <ProfileData profile={profile} status={status}
-                                   isOwner={isOwner}
-                                   gotToEditMode={goToEditMode}/>
-                }
+  return (
+    <>
+      <div className={classes.contentLogo}>
+        <ProfilePhotoData
+          profilePhotoSize={profile.photos.large}
+          isOwner={isOwner}
+        />
 
-                {/*<ProfileData profile={profile} status={status}/>*/}
-            </div>
-        </>
-    )
-}
+        {editMode ? (
+          <ProfileDataFormReduxForm
+            // @ts-ignore
+            onSubmit={onSubmit}
+            status={status}
+            profile={profile}
+          />
+        ) : (
+          <ProfileData
+            profile={profile}
+            status={status}
+            isOwner={isOwner}
+            gotToEditMode={goToEditMode}
+          />
+        )}
 
+        {/*<ProfileData profile={profile} status={status}/>*/}
+      </div>
+    </>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

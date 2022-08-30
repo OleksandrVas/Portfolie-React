@@ -1,102 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Profile from "./Profile";
-import {connect} from "react-redux";
-import {getStatus, getUsers, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer";
-import {compose} from "redux";
-import { withRouter} from "react-router-dom";
-import {AppStateType} from "../../redux/redux-store";
-import {PostDataType, ProfileType} from "../../types/types";
+import { useDispatch, useSelector } from "react-redux";
+import { getStatus, getUsers } from "../../redux/profile-reducer";
+import {
+  getAuthorisedUserId,
+  getPostData,
+  getProfile,
+  getUserStatus,
+} from "../../redux/users-selectors";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
-class ProfileContainer extends React.Component<PropsType> {
+export const ProfileContainer = () => {
+  const profile = useSelector(getProfile);
+  const status = useSelector(getUserStatus);
+  const postData = useSelector(getPostData);
+  const authorisedUserId = useSelector(getAuthorisedUserId);
+  const dispatch = useDispatch();
+  const match = useRouteMatch();
+  const history = useHistory();
 
+  const refreshProfile = () => {
+    let userId = match.isExact; // is it true ? why isExact ?
 
-    refreshProfile = () => {
+    if (!userId) {
+      const userId: number | null = authorisedUserId;
+      dispatch(getUsers(userId));
+      dispatch(getStatus(userId));
+      if (!userId) {
         // @ts-ignore
-        let userId = this.props.match.params.userId;
-        if (!userId) {
-            userId = this.props.authorisedUserId
-            if (!userId) {
-                // @ts-ignore
-                this.props.history.push("/login")
-            }
-        }
-        this.props.getUsers(userId)
-        this.props.getStatus(userId)
+        history.push("/login");
+      }
     }
+  };
+  useEffect(() => {
+    dispatch(refreshProfile());
+  }, []);
 
-    componentDidMount() {
-        this.refreshProfile()
-    }
-
-    componentDidUpdate(prevProps: PropsType, prevState: StateProps) {
-        // if( this.props.match.params.userId !== prevProps.match.params.userId){
-        //     this.refreshProfile()
-        // }
-    }
-
-    render() {
-
-
-        return (
-            <>
-                <Profile saveProfile={this.props.saveProfile}
-                         savePhoto={this.props.savePhoto}
-                         postData = {this.props.postData}
-                    // @ts-ignore
-                         isOwner={!this.props.match.params.userId}
-                         profile={this.props.profile}
-                         status={this.props.status}
-                         updateStatus={this.props.updateStatus}/>
-            </>
-        )
-    }
-
-}
-
-let mapStateToProps = (state: AppStateType) => {
-    return {
-        profile: state.profilePage.profile,
-        status: state.profilePage.status,
-        authorisedUserId: state.auth.userId,
-        postData : state.profilePage.postData
-    }
-
-}
-
-export default compose<React.ComponentType>(
-    connect<MapStateToProps, MapDispatchToProps, OwnProps, AppStateType>(mapStateToProps, {
-        getUsers,
-        getStatus,
-        updateStatus,
-        savePhoto,
-        saveProfile
-    }),
-    withRouter,
-    // WithAuthRedirect
-)(ProfileContainer)
-
-
-
-type MapStateToProps = {
-    authorisedUserId: number | null,
-    profile: ProfileType | null
-    status: string | null
-    postData : Array<PostDataType>
-
-}
-type StateProps = {}
-
-type MapDispatchToProps = {
-    updateStatus: (status: string) => void,
-    saveProfile: (profile: ProfileType ) => void,
-    savePhoto: (file: HTMLImageElement) => void,
-    getUsers: (userId: number) => void,
-    getStatus: (userId: number) => void,
-}
-type OwnProps = {
-    color: string
-}
-type PropsType = OwnProps & MapStateToProps & MapDispatchToProps
-
-
-
+  return (
+    <>
+      <Profile
+        profile={profile}
+        status={status}
+        isOwner={!match.isExact}
+        postData={postData}
+      />
+    </>
+  );
+};

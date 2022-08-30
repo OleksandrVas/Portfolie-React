@@ -14,11 +14,22 @@ export const getUsersSuperSelector = createSelector(getUsers, (users) => {
 export const getPageSize = (state: AppStateType) => {
   return state.usersPage.pageSize;
 };
-export const getIsAuth = (state: AppStateType) => {
-  return state.auth.isAuth;
+export const getProfile = (state: AppStateType) => {
+  return state.profilePage.profile;
 };
+export const getUserStatus = (state: AppStateType) => {
+  return state.profilePage.status;
+};
+
+export const getPostData = (state: AppStateType) => {
+  return state.profilePage.postData;
+};
+
 export const getCaptchaUrl = (state: AppStateType) => {
   return state.auth.captchaUrl;
+};
+export const getAuthorisedUserId = (state: AppStateType) => {
+  return state.auth.userId;
 };
 export const getTotalUsersCount = (state: AppStateType) => {
   return state.usersPage.totalUsersCount;
